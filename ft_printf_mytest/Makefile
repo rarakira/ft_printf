@@ -38,4 +38,4 @@ play: all
 		@./test
 		@echo "\n* * * ************* TEST COMPLETED ************ * * *\n"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test play
