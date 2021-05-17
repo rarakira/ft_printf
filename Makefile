@@ -6,13 +6,13 @@
 #    By: lbaela <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/18 14:03:12 by lbaela            #+#    #+#              #
-#    Updated: 2021/05/13 14:39:19 by lbaela           ###   ########.fr        #
+#    Updated: 2021/05/17 14:44:23 by lbaela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFILES =	ft_printf.c	
+CFILES =	ft_printf.c		count_f_specifiers.c
 
 OBJS = $(CFILES:.c=.o)
 
