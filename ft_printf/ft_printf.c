@@ -6,28 +6,13 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:51:22 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/17 14:27:11 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/17 14:45:49 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	count_f_specifiers(const char *str)
-{
-	int	res;
-
-	res = 0;
-	while (*str != '\0')
-	{
-		if (*str == '%' && *(str + 1) == '%')
-			str++;
-		else if (*str == '%')
-			res++;
-		str++;
-	}
-	return (res);
-}
 /* Function that mimics the real printf */
 int ft_printf(const char *str, ...)
 {

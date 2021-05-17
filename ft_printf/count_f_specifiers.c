@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   count_f_specifiers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/17 14:45:36 by lbaela           ###   ########.fr       */
+/*   Created: 2021/05/17 14:42:35 by lbaela            #+#    #+#             */
+/*   Updated: 2021/05/17 14:43:05 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stddef.h>
-# include <stdio.h>
+#include "ft_printf.h"
 
-int	ft_printf(const char *str, ...);
-int	count_f_specifiers(const char *str);
+int	count_f_specifiers(const char *str)
+{
+	int	res;
 
-#endif
+	res = 0;
+	while (*str != '\0')
+	{
+		if (*str == '%' && *(str + 1) == '%')
+			str++;
+		else if (*str == '%')
+			res++;
+		str++;
+	}
+	return (res);
+}
