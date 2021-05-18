@@ -17,7 +17,7 @@ all:	lib ${NAME}
 lib:
 		cd ${LIBDIR} && make
 
-${NAME}:${OBJS} ${LIBDIR}/libftprintf.a
+${NAME}: ${LIBDIR}/libftprintf.a
 		${CC} ${CFLAGS} ${SRCS} -L${LIBDIR} -l${LIB} -o ${NAME}
 
 clean:
@@ -34,8 +34,6 @@ libft_re:
 re:		fclean all
 
 play: all
-		@echo "\n* * * ************* STARTING TEST ************* * * *\n"
 		@./test
-		@echo "\n* * * ************* TEST COMPLETED ************ * * *\n"
 
 .PHONY: all clean fclean re test play

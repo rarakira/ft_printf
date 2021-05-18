@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_f_specifiers.c                               :+:      :+:    :+:   */
+/*   check_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 14:42:35 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/17 14:43:05 by lbaela           ###   ########.fr       */
+/*   Created: 2021/05/18 12:30:55 by lbaela            #+#    #+#             */
+/*   Updated: 2021/05/18 12:31:44 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	count_f_specifiers(const char *str)
+int	check_format(char *fspec)
 {
-	int	res;
-
-	res = 0;
-	while (*str != '\0')
-	{
-		if (*str == '%' && *(str + 1) == '%')
-			str++;
-		else if (*str == '%')
-			res++;
-		str++;
-	}
-	return (res);
+	if (fspec[ft_strlen(fspec) - 1] == 'd')
+		return (1);
+	if (fspec[ft_strlen(fspec) - 1] == 's')
+		return (2);
+	if (fspec[ft_strlen(fspec) - 1] == 'c')
+		return (3);
+	return (0);
 }
