@@ -6,14 +6,14 @@
 #    By: lbaela <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/18 14:03:12 by lbaela            #+#    #+#              #
-#    Updated: 2021/05/18 13:12:49 by lbaela           ###   ########.fr        #
+#    Updated: 2021/05/18 20:54:40 by lbaela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFILES =	ft_printf.c			print_control_string.c\
-			check_format.c		print_arg.c
+CFILES =	ft_printf.c			print_control_string.c		print_arg.c	\
+			check_format.c		convert_arg_sc.c
 
 OBJS = $(CFILES:.c=.o)
 

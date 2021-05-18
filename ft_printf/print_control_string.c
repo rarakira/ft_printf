@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:26:24 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/18 18:33:57 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/18 18:53:34 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static char	*fetch_fspec(char **s)
 
 	n = 0;
 	while (!ft_isalpha(*(*s + n)))
+		n++;
+	while (*(*s + n) == 'l' || *(*s + n) == 'h')
 		n++;
 	n++;
 	res = ft_substr(*s, 0, n);
@@ -40,6 +42,7 @@ void	print_control_string(int n_args, char *s, va_list ap, int *count)
 		if (*s == '%' && *(s + 1) == '%')
 		{
 			ft_putchar_fd('%', 1);
+			*count += 1;
 			s += 2;
 			n_args++;
 		}
@@ -50,5 +53,4 @@ void	print_control_string(int n_args, char *s, va_list ap, int *count)
 			free(fspec);
 		}
 	}
-	// va_end(ap); // should there be one?
 }
