@@ -11,8 +11,11 @@ int	main(void)
 	ft_printf("%%, %d, %s, %c\n", 5, "Hello", 'W');
 	ft_printf("%%, %d, %s, %d (changed to %%d)\n", 5, "Hello", 'W');
 	ft_printf("\n%%%% %%%% %%d %%x %%i:\n");
-	ft_printf("%% %% %d %x %i\n\n", 5, 10);
-	//printf("Number of chars = %d\n", printf("%d, %5d, %d\n", 5, 10, 20));
+	ft_printf("%% %% %d %x %i\n", 5, 10);
+	printf("Printf: Number of chars = %d\n",
+	printf("\n\n%d, %d, %d\n", 5, 10, 20000000));
+	ft_printf("Ft_Printf: Number of chars = %d\n",
+	ft_printf("\n\n%d, %d, %d\n", 5, 10, 20000000));
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);
 }
