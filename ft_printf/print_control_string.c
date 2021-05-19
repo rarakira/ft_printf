@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:26:24 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/18 18:53:34 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/19 12:37:59 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	print_control_string(int n_args, char *s, va_list ap, int *count)
 		}
 		else if (*s == '%')
 		{
+			s++;
 			fspec = fetch_fspec(&s);
 			print_arg(fspec, ap, count);
 			free(fspec);

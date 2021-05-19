@@ -56,10 +56,107 @@ void test_02(char *name)
 	}
 }
 
+void test_02_2(char *name)
+{
+	char *str1 = "Hello world!";
+	char *str2 = "World Hello!";
+
+	print_name(name);
+	printf("%%-20s\n");
+	printf("Printf: %d\n", printf("|%-20s|\n", str1));
+	printf("Ft_printf: %d\n", ft_printf("|%-20s|\n", str1));
+	next();
+	printf("%%30.5s\n");
+	printf("Printf: %d\n", printf("|%30.5s|\n", str1));
+	printf("Ft_printf: %d\n", ft_printf("|%30.5s|\n", str1));
+	next();
+	printf("%%20.30s\n");
+	printf("Printf: %d\n", printf("|%20.30s|\n", str2));
+	printf("Ft_printf: %d\n", ft_printf("|%20.30s|\n", str2));
+	next();
+	printf("%%*.*s\n");
+	printf("Printf: %d\n", printf("|%*.*s|\n", 15, 5, str1));
+	printf("Ft_printf: %d\n", ft_printf("|%*.*s|\n", 15, 5, str1));
+	next();
+	printf("%%.s\n");
+	printf("Printf: %d\n", printf("|%.s|\n", "lol"));
+	printf("Ft_printf: %d\n", ft_printf("|%.s|\n", "lol"));
+	next();
+	printf("%%5.s\n");
+	printf("Printf: %d\n", printf("|%5.s|\n", "lol"));
+	printf("Ft_printf: %d\n", ft_printf("|%5.s|\n", "lol"));
+}
+
 void test_03(char *name)
 {
+	char *str1 = "Hello world!";
+	char *str2 = "World Hello!";
+	int n1, n2;
+
 	print_name(name);
-	ft_printf("\n\n");
+	printf("%%s\n");
+	n1 = printf("pf:\t|%s|\n", str1);
+	n2 = ft_printf("ft:\t|%s|\n", str1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%%.5s\n");
+	n1 = printf("pf:\t|%.5s|\n", str1);
+	n2 = ft_printf("ft:\t|%.5s|\n", str1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%%20s\n");
+	n1 = printf("pf:\t|%20s|\n", str1);
+	n2 = ft_printf("ft:\t|%20s|\n", str1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%%-20s\n");
+	n1 = printf("pf:\t|%-20s|\n", str1);
+	n2 = ft_printf("ft:\t|%-20s|\n", str1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+	printf("%%30.5s\n");
+	n1 = printf("pf:\t|%30.5s|\n", str1);
+	n2 = ft_printf("ft:\t|%30.5s|\n", str1);
+	next();
+
+	printf("%%20.30s\n");
+	n1 = printf("pf:\t|%20.30s|\n", str2);
+	n2 = ft_printf("ft:\t|%20.30s|\n", str2);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%%*.*s\n");
+	n1 = printf("pf:\t|%*.*s|\n", 15, 5, str1);
+	n2 = ft_printf("ft:\t|%*.*s|\n", 15, 5, str1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%%.s\n");
+	n1 = printf("pf:\t|%.s|\n", "lol");
+	n2 = ft_printf("ft:\t|%.s|\n", "lol");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%%5.s\n");
+	n1 = printf("pf:\t|%5.s|\n", "lol");
+	n2 = ft_printf("ft:\t|%5.s|\n", "lol");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", " %*.5s %*.5s ");
+	n1 = printf("pf:\t|%*.5s| ||%*.5s||\n", -10, "123", 10, "4567");
+	n2 = ft_printf("ft:\t|%*.5s| ||%*.5s||\n", 10, "123", 10, "4567"); // "-"
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", " %*.5s %*.5s ");
+	n1 = printf("pf:\t|%*.5s| ||%*.5s||\n", 10, "123", -10, "4567");
+	n2 = ft_printf("ft:\t|%*.5s| ||%*.5s||\n", 10, "123", 10, "4567"); // "-"
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 }
 
 void test_04(char *name)
@@ -71,10 +168,11 @@ void test_04(char *name)
 int	main(void)
 {
 	ft_printf("\n* * * ************* STARTING TEST ************* * * *\n");
-	test_01("01, all formats");
-	test_02("02, return values");
-	//test_03("02, string args");
-	test_04("04, Xx-format");
+	//test_01("01, all formats");
+	//test_02("02, return values");
+	//test_02_2("02-2, return values (strings)");
+	test_03("03, string args");
+	//test_04("04, Xx-format");
 	
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);

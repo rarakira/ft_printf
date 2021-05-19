@@ -6,7 +6,7 @@ LIB			= ftprintf
 
 LIBDIR		= ../ft_printf
 
-CC			= cc
+CC			= gcc
 
 CFLAGS		= -Wall -Wextra -Werror -I../ft_printf/includes
 
@@ -17,7 +17,8 @@ all:	lib ${NAME}
 lib:
 		cd ${LIBDIR} && make
 
-${NAME}: ${LIBDIR}/libftprintf.a
+#$ {LIBDIR}/libftprintf.a
+${NAME}:
 		${CC} ${CFLAGS} ${SRCS} -L${LIBDIR} -l${LIB} -o ${NAME}
 
 clean:
