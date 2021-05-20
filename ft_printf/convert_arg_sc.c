@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 20:52:34 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/20 18:47:49 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/20 19:26:10 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*get_string(t_args *arg, va_list ap)
 	char	*tmp;
 
 	tmp = ft_strdup(va_arg(ap, char *));
+	if (!tmp)
+		tmp = ft_strdup("(null)");
 	if (!arg->prec_flag || ft_strlen(tmp) < arg->prec || arg->prec_neg)
 		arg->prec = ft_strlen(tmp);
 	if (ft_strlen(tmp) > arg->prec && arg->prec_flag)
@@ -49,6 +51,8 @@ char	*convert_arg_s(t_args *arg, va_list ap)
 	char	*tmp;
 
 	tmp = get_string(arg, ap);
+	if (!tmp)
+		return (NULL);
 	if (ft_strlen(tmp) < arg->width)
 	{
 		res = (char *)ft_calloc(arg->width + 1, sizeof(char));

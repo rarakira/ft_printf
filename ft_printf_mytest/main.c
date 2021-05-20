@@ -89,11 +89,13 @@ void test_02_2(char *name)
 
 void test_03(char *name)
 {
-	char *str1 = "Hello world!";
-	char *str2 = "World Hello!";
 	int n1, n2;
 
 	print_name(name);
+
+	char *str1 = "Hello world!";
+	char *str2 = "World Hello!";
+
 	printf("%%s\n");
 	n1 = printf("pf:\t|%s|\n", str1);
 	n2 = ft_printf("ft:\t|%s|\n", str1);
@@ -176,6 +178,31 @@ void test_03(char *name)
 	n2 = ft_printf("ft:\t|%%|\n");
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
+
+	printf("%s\n", "%s: NULL");
+	n1 = printf("pf:\t|%s|\n", NULL);
+	n2 = ft_printf("ft:\t|%s|\n", NULL);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%-3.s");
+	n1 = printf("pf:\t|%-3.s|\n", NULL);
+	n2 = ft_printf("ft:\t|%-3.s|\n", NULL);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%-9.1s");
+	n1 = printf("pf:\t|%-9.1s|\n", NULL);
+	n2 = ft_printf("ft:\t|%-9.1s|\n", NULL);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%.*s");
+	n1 = printf("pf:\t|%.*s|\n", -2, NULL);
+	n2 = ft_printf("ft:\t|%.*s|\n", -2, NULL);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
 }
 
 void test_04(char *name)
