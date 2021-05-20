@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/18 20:53:03 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/20 14:00:03 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,15 @@
 # include <stdio.h>
 # include "libft.h"
 
-//enum formats { INT = int, STR = * char, CHAR = char };
+typedef struct s_args
+{
+	size_t	width;
+	int		a_left;
+	size_t	prec;
+	int		prec_flag;
+	int		prec_neg;
+	char	*str;
+}				t_args;
 
 int		ft_printf(const char *str, ...);
 void	print_control_string(int n_args, char *s, va_list ap, int *count);

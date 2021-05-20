@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 20:52:34 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/20 13:18:58 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/20 13:59:55 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,41 +45,43 @@ size_t	get_size_arg(char **fspec, va_list ap, int *sign)
 	return ((size_t)res);
 }
 
+void	init_arg(t_args *arg)
+{
+	arg->width = 0;
+	arg->a_left = 0;
+	arg->prec = 0;
+	arg->prec_flag = 0;
+	arg->prec_neg = 0;
+	arg->str = NULL;
+}
+
 char	*convert_arg_s(char *fspec, va_list ap)
 {
 	char	*res;
 	char	*tmp;
-	int		adj_l;
-	int		prec_neg;
-	size_t	width;
-	size_t	precision;
-	int		flag_p;
+	t_args	arg;
 
-	adj_l = 0;
-	prec_neg = 0;
-	precision = 0;
-	width = 0;
-	flag_p = 0;
+	init_arg(&arg);
 	if (*fspec == '-')
 	{
-		adj_l = 1;
+		arg.a_left = 1;
 		fspec++;
 	}
 	if (*fspec == '*' || ft_isdigit(*fspec))
-		width = get_size_arg(&fspec, ap, &adj_l);
+		arg.width = get_size_arg(&fspec, ap, &arg.a_left);
 	if (*fspec == '.')
 	{
-		flag_p = 1;
+		arg.prec_flag = 1;
 		fspec++;
-		precision = get_size_arg(&fspec, ap, &prec_neg);
+		arg.prec = get_size_arg(&fspec, ap, &arg.prec_neg);
 	}
 	res = ft_strdup(va_arg(ap, char *));
-	if (!flag_p || ft_strlen(res) < precision || prec_neg)
-		precision = ft_strlen(res);
-	if (ft_strlen(res) > precision && flag_p)
+	if (!arg.prec_flag || ft_strlen(res) < arg.prec || arg.prec_neg)
+		arg.prec = ft_strlen(res);
+	if (ft_strlen(res) > arg.prec && arg.prec_flag)
 	{
-		tmp = (char *)ft_calloc(precision + 1, sizeof(char));
-		ft_strlcpy(tmp, res, precision + 1);
+		tmp = (char *)ft_calloc(arg.prec + 1, sizeof(char));
+		ft_strlcpy(tmp, res, arg.prec + 1);
 		free(res);
 		res = NULL;
 	}
@@ -88,16 +90,16 @@ char	*convert_arg_s(char *fspec, va_list ap)
 		tmp = res;
 		res = NULL;
 	}
-	if (width < precision)
-		width = precision;
-	if (ft_strlen(tmp) < width)
+	if (arg.width < arg.prec)
+		arg.width = arg.prec;
+	if (ft_strlen(tmp) < arg.width)
 	{
-		res = (char *)ft_calloc(width + 1, sizeof(char));
-		ft_memset(res, ' ', width);
-		if (!adj_l)
-				ft_memcpy((res + width - precision), tmp, precision);
+		res = (char *)ft_calloc(arg.width + 1, sizeof(char));
+		ft_memset(res, ' ', arg.width);
+		if (!arg.a_left)
+				ft_memcpy((res + arg.width - arg.prec), tmp, arg.prec);
 		else
-				ft_memcpy(res, tmp, precision);
+				ft_memcpy(res, tmp, arg.prec);
 		free(tmp);
 	}
 	else
