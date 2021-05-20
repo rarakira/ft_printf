@@ -9,7 +9,7 @@ void print_name(char *name)
 
 void next(void)
 {
-	printf("\n");
+	printf("\n\n");
 }
 void test_01(char *name)
 {
@@ -120,6 +120,7 @@ void test_03(char *name)
 	printf("%%30.5s\n");
 	n1 = printf("pf:\t|%30.5s|\n", str1);
 	n2 = ft_printf("ft:\t|%30.5s|\n", str1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
 	printf("%%20.30s\n");
@@ -146,15 +147,33 @@ void test_03(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
-	printf("%s\n", " %*.5s %*.5s ");
+	printf("%s\n", "%*.5s %*.5s");
 	n1 = printf("pf:\t|%*.5s| ||%*.5s||\n", -10, "123", 10, "4567");
-	n2 = ft_printf("ft:\t|%*.5s| ||%*.5s||\n", 10, "123", 10, "4567"); // "-"
+	n2 = ft_printf("ft:\t|%*.5s| ||%*.5s||\n", -10, "123", 10, "4567");
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
-	printf("%s\n", " %*.5s %*.5s ");
+	printf("%s\n", "%*.5s %*.5s");
 	n1 = printf("pf:\t|%*.5s| ||%*.5s||\n", 10, "123", -10, "4567");
-	n2 = ft_printf("ft:\t|%*.5s| ||%*.5s||\n", 10, "123", 10, "4567"); // "-"
+	n2 = ft_printf("ft:\t|%*.5s| ||%*.5s||\n", 10, "123", -10, "4567");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%*.5s %*.*s");
+	n1 = printf("pf:\t|%*.5s| ||%*.*s||\n", 10, "123", 35, -2, "4567"); // neg_p
+	n2 = ft_printf("ft:\t|%*.5s| ||%*.*s||\n", 10, "123", 35, -2, "4567");//ignr
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%*.5s %*.*s");
+	n1 = printf("pf:\t|%*.5s| ||%*.*s||\n", 10, "123", 35, 2, "4567");
+	n2 = ft_printf("ft:\t|%*.5s| ||%*.*s||\n", 10, "123", 35, 2, "4567");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%%");
+	n1 = printf("pf:\t|%%|\n");
+	n2 = ft_printf("ft:\t|%%|\n");
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 }
