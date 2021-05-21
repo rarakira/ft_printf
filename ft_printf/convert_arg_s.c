@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_arg_sc.c                                   :+:      :+:    :+:   */
+/*   convert_arg_s.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 20:52:34 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/20 19:26:10 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/21 13:38:13 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*convert_arg_c(char *fspec, va_list ap)
-{
-	char	*res;
-
-	(void) fspec;
-	res = ft_calloc(2, sizeof(char));
-	*res = va_arg(ap, int);
-	return (res);
-}
 
 char	*get_string(t_args *arg, va_list ap)
 {
@@ -48,22 +38,9 @@ char	*get_string(t_args *arg, va_list ap)
 char	*convert_arg_s(t_args *arg, va_list ap)
 {
 	char	*res;
-	char	*tmp;
 
-	tmp = get_string(arg, ap);
-	if (!tmp)
+	res = get_string(arg, ap);
+	if (!res)
 		return (NULL);
-	if (ft_strlen(tmp) < arg->width)
-	{
-		res = (char *)ft_calloc(arg->width + 1, sizeof(char));
-		ft_memset(res, ' ', arg->width);
-		if (!arg->a_left)
-			ft_memcpy((res + arg->width - arg->prec), tmp, arg->prec);
-		else
-			ft_memcpy(res, tmp, arg->prec);
-		free(tmp);
-	}
-	else
-		return (tmp);
-	return (res);
+	return (trim_and_align(res, arg));
 }

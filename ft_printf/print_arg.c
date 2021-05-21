@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:31:30 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/20 19:22:10 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/21 14:33:44 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_arg(t_args *arg, va_list ap, char *fspec)
 	arg->prec_neg = 0;
 	arg->str = NULL;
 	arg->format = fspec[ft_strlen(fspec) - 1];
-	if (*fspec == '-')
+	while (*fspec == '-')
 	{
 		arg->a_left = 1;
 		fspec++;
@@ -69,7 +69,7 @@ void	print_arg(char *fspec, va_list ap, int *count)
 	else if (arg.format == 's')
 		arg.str = convert_arg_s(&arg, ap);
 	else if (arg.format == 'c')
-		arg.str = convert_arg_c(fspec, ap);
+		arg.str = convert_arg_c(&arg, ap, count);
 	else if (arg.format == 'p')
 		arg.str = convert_arg_p(fspec, ap);
 	else if (arg.format == 'i')

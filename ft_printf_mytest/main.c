@@ -203,6 +203,24 @@ void test_03(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
+	printf("%s\n", "%4.2ss %-1.s %-----5.3s");
+	n1 = printf("pf:\t|%4.2s|s ||%-1.s|| |%-----5.3s|\n", "coco", NULL, "yooo");
+	n2 = ft_printf("ft:\t|%4.2s|s ||%-1.s|| |%-----5.3s|\n", "coco", NULL, "yooo");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%4.2ss %-1.s %--5.3s");
+	n1 = printf("pf:\t|%4.2s|s ||%-1.s|| ||%--5.3s||\n", "coco", NULL, "yooo");
+	n2 = ft_printf("ft:\t|%4.2s|s ||%-1.s|| ||%--5.3s||\n", "coco", NULL, "yooo");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%*(-5).3s %*(5).3s");
+	n1 = printf("pf:\t|%*.3s| ||%*.3s||\n", -5 , "yooo", 5 , "yooo");
+	n2 = ft_printf("ft:\t|%*.3s| ||%*.3s||\n", -5 , "yooo", 5 , "yooo");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
 }
 
 void test_04(char *name)
@@ -211,14 +229,60 @@ void test_04(char *name)
 	printf("Here is the %%.10x format = %.10x (%d), and %%.10X = %.0X\n\n", 125, 125, 125);
 }
 
+void test_05(char *name)
+{
+	int n1, n2;
+
+	print_name(name);
+/*
+	char ch1 = 'A';
+	char ch2 = 'B';
+
+	printf("%s\n", "%5c %-5c");
+	n1 = printf("pf:\t|%5c| ||%-5c||\n", ch1, ch2);
+	n2 = ft_printf("ft:\t|%5c| ||%-5c||\n", ch1, ch2);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%*c %*c");
+	n1 = printf("pf:\t|%*c| ||%*c||\n", -10, '1', 10, '2');
+	n2 = ft_printf("ft:\t|%*c| ||%*c||\n", -10, '1', 10, '2');
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%-c%-c%c*");
+	n1 = printf("pf:\t|%-c%-c%c*|\n", 1, '0', 0);
+	n2 = ft_printf("ft:\t|%-c%-c%c*|\n", 1, '0', 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s\n", "%c");
+	n1 = printf("pf:\t|%c|\n", 0);
+	n2 = ft_printf("ft:\t|%c|\n", 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+	*/
+
+	printf("%s\n", "%----4c %1c %10c%-c");
+	n1 = printf("pf:\t|%----4c| ||%1c|| |%10c| ||%-c||", '\0', '\n', (char)564, 0);
+	n2 = ft_printf("ft:\t|%----4c| ||%1c|| |%10c| ||%-c||", '\0', '\n', (char)564, 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	//for (int i = 0; i < 100; i++)
+	//	printf("%d\t%c\n", i, i);
+
+}
+
 int	main(void)
 {
 	ft_printf("\n* * * ************* STARTING TEST ************* * * *\n");
 	//test_01("01, all formats");
 	//test_02("02, return values");
 	//test_02_2("02-2, return values (strings)");
-	test_03("03, string args");
+	//test_03("03, string args");
 	//test_04("04, Xx-format");
+	test_05("05, chars");
 	
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);
