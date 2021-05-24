@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:31:30 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/21 14:33:44 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/24 13:07:04 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ size_t	get_size_arg(char **fspec, va_list ap, int *sign)
 
 void	init_arg(t_args *arg, va_list ap, char *fspec)
 {
+	arg->flag_p = 0;
+	arg->flag_0 = 0;
+	arg->flag_alt = 0;
+	arg->padding = ' ';
 	arg->width = 0;
 	arg->a_left = 0;
 	arg->prec = 0;
@@ -44,6 +48,17 @@ void	init_arg(t_args *arg, va_list ap, char *fspec)
 	arg->prec_neg = 0;
 	arg->str = NULL;
 	arg->format = fspec[ft_strlen(fspec) - 1];
+	if (*fspec == '0')
+	{
+		arg->flag_0 = 1;
+		arg->padding = '0';
+		fspec++;
+	}
+	if (*fspec == '+')
+	{
+		arg->flag_p = 1;
+		fspec++;
+	}
 	while (*fspec == '-')
 	{
 		arg->a_left = 1;
@@ -65,7 +80,7 @@ void	print_arg(char *fspec, va_list ap, int *count)
 
 	init_arg(&arg, ap, fspec);
 	if (arg.format == 'd')
-		arg.str = convert_arg_d(fspec, ap);
+		arg.str = convert_arg_d(&arg, ap);
 	else if (arg.format == 's')
 		arg.str = convert_arg_s(&arg, ap);
 	else if (arg.format == 'c')

@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:26:24 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/20 18:17:04 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/21 16:05:06 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static char	*fetch_fspec(char **s)
 	return (res);
 }
 
-void	print_control_string(int n_args, char *s, va_list ap, int *count)
+void	print_control_string(char *s, va_list ap, int *count)
 {
 	char	*fspec;
 
-	while (n_args-- > 0 || *s != '\0')
+	while (*s != '\0')
 	{
 		while (*s != '\0' && *s != '%')
 		{
@@ -44,7 +44,6 @@ void	print_control_string(int n_args, char *s, va_list ap, int *count)
 			ft_putchar_fd('%', 1);
 			*count += 1;
 			s += 2;
-			n_args++;
 		}
 		else if (*s == '%')
 		{
