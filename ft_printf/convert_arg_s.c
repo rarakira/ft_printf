@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 20:52:34 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/24 13:13:22 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/24 15:25:53 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ char	*convert_arg_s(t_args *arg, va_list ap)
 	res = get_string(arg, ap);
 	if (!res)
 		return (NULL);
-	return (trim_and_align(res, arg));
+	return (trim_and_align_str(res, arg));
 }

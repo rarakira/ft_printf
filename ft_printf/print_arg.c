@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:31:30 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/24 13:07:04 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/25 00:24:38 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,46 @@ size_t	get_size_arg(char **fspec, va_list ap, int *sign)
 	return ((size_t)res);
 }
 
+static int	inset(char ch, char const *set)
+{
+	int	i;
+
+	i = 0;
+	while (*set)
+	{
+		if (*set++ == ch)
+			return (1);
+	}
+	return (0);
+}
+
+void	check_for_flags(t_args *arg, char **fspec)
+{
+	while (inset(**fspec, "-+0 #"))
+	{
+		if (**fspec == '-')
+			arg->a_left = 1;
+		else if (**fspec == '0')
+		{
+			arg->padding = '0';
+			arg->flag_0 = 1;
+		}
+		else if (**fspec == '#')
+			arg->flag_alt = 1;
+		else if (**fspec == '+' && arg->sign != '-')
+			arg->sign = '+';
+		else if (**fspec == ' ' && arg->sign != '+' && arg->sign != '-')
+			arg->sign = ' ';
+		*fspec += 1;
+	}
+	if (arg->a_left)
+		arg->padding = ' ';
+}
+
 void	init_arg(t_args *arg, va_list ap, char *fspec)
 {
-	arg->flag_p = 0;
 	arg->flag_0 = 0;
+	arg->sign = 0;
 	arg->flag_alt = 0;
 	arg->padding = ' ';
 	arg->width = 0;
@@ -48,22 +84,7 @@ void	init_arg(t_args *arg, va_list ap, char *fspec)
 	arg->prec_neg = 0;
 	arg->str = NULL;
 	arg->format = fspec[ft_strlen(fspec) - 1];
-	if (*fspec == '0')
-	{
-		arg->flag_0 = 1;
-		arg->padding = '0';
-		fspec++;
-	}
-	if (*fspec == '+')
-	{
-		arg->flag_p = 1;
-		fspec++;
-	}
-	while (*fspec == '-')
-	{
-		arg->a_left = 1;
-		fspec++;
-	}
+	check_for_flags(arg, &fspec);
 	if (*fspec == '*' || ft_isdigit(*fspec))
 		arg->width = get_size_arg(&fspec, ap, &(arg->a_left));
 	if (*fspec == '.')
@@ -72,6 +93,8 @@ void	init_arg(t_args *arg, va_list ap, char *fspec)
 		fspec++;
 		arg->prec = get_size_arg(&fspec, ap, &(arg->prec_neg));
 	}
+	if (arg->prec_flag && arg->width > arg->prec)
+		arg->padding = ' ';
 }
 
 void	print_arg(char *fspec, va_list ap, int *count)

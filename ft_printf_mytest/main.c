@@ -313,9 +313,15 @@ void test_07(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
-	printf("3: %s -> %d\n", "%0d %+0d %0+d", m);
+	printf("3.1: %s -> %d\n", "%0d %+0d %0+d", m);
 	n1 = printf("pf:\t|%0d| |%+0d| |%0+d|\n", m, m, m);
 	n2 = ft_printf("ft:\t|%0d| |%+0d| |%0+d|\n", m, m, m);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3.2: %s -> %.4d\n", "%0.4d %+0.4d %0+.4d", m);
+	n1 = printf("pf:\t|%0.4d| |%+0.4d| |%0+.4d|\n", m, m, m);
+	n2 = ft_printf("ft:\t|%0.4d| |%+0.4d| |%0+.4d|\n", m, m, m);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 	
@@ -397,9 +403,56 @@ void test_07(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
-	printf("12: %s -> %d\n", "%010d %0.0d %-010d", n);
-	n1 = printf("pf:\t|%010d| ||%0.0d|| |%+010d|\n", n, n, n);
-	n2 = ft_printf("ft:\t|%010d| ||%0.0d|| |%+010d|\n", n, n, n);
+	printf("12: %s -> %d\n", "%010d %010.d %0.0d %-010d", n);
+	n1 = printf("pf:\t|%010d| |%010.d| ||%0.0d|| |%+010d|\n", n, n, n, n);
+	n2 = ft_printf("ft:\t|%010d| |%010.d| ||%0.0d|| |%+010d|\n", n, n, n, n);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("13: %s -> %d\n", "%.3d %.4d", m);
+	n1 = printf("pf:\t|%.3d| ||%.4d||\n", m, m);
+	n2 = ft_printf("ft:\t|%.3d| ||%.4d||\n", m, m);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+}
+
+void test_08(char *name)
+{
+	int n1, n2;
+
+	print_name(name);
+
+	int	n = 0;
+	//int	m = -123;
+
+	printf("1: %s -> %d\n", "%.1d %.2d %4.2d", n);
+	n1 = printf("pf:\t|%.1d| ||%.2d|| |%4.2d|\n", n, n, n);
+	n2 = ft_printf("ft:\t|%.1d| ||%.2d|| |%4.2d|\n", n, n, n);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("2: %s -> %d\n", "%.d %5.d %-5.d", n);
+	n1 = printf("pf:\t|%.d| ||%5.d|| |%-5.d|\n", n, n, n);
+	n2 = ft_printf("ft:\t|%.d| ||%5.d|| |%-5.d|\n", n, n, n);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s -> %d, %d, %d, %d,\n", "0*%0-*d*0 0*%0*d*0", 21, 1021, 21, -1011);
+	n1 = printf("pf:\t|0*|%-*d|*0 0*||%0*d||*0|\n", 21, 1021, 21, -1011);
+	n2 = ft_printf("ft:\t|0*|%0-*d|*0 0*||%0*d||*0|\n", 21, 1021, 21, -1011);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("4: %s -> %d\n", "%+.d %+5.d", n);
+	n1 = printf("pf:\t|%+.d| ||%+5.d||\n", n, n);
+	n2 = ft_printf("ft:\t|%+.d| ||%+5.d||\n", n, n);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("5: %s -> %d, %d, %d, %d,\n", "--0*%0*.0d*0 0*%0*.10d*0--", -2, 0, 21, 1);
+	n1 = printf("pf:\t--0*|%0*.0d|*0 0*||%0*.10d||*0--\n", -2, 0, 21, 1);
+	n2 = ft_printf("ft:\t--0*|%0*.0d|*0 0*||%0*.10d||*0--\n", -2, 0, 21, 1);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 }
@@ -415,6 +468,7 @@ int	main(void)
 	//test_05("05, chars");
 	//test_06("06, wtf is S?");
 	test_07("07, d");
+	test_08("08, more d");
 	
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);

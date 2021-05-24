@@ -32,5 +32,5 @@ char	*convert_arg_c(t_args *arg, va_list ap, int *count)
 		return (NULL);
 	}
 	arg->prec = 1;
-	return (trim_and_align(res, arg));
+	return (trim_and_align_str(res, arg));
 }
