@@ -1,59 +1,73 @@
 #include "ft_printf.h"
 
+static char	*set_new_line(t_args *arg)
+{
+	char	*res;
+
+	if (arg->width > arg->prec)
+	{
+		res = (char *)ft_calloc(arg->width + 1, sizeof(char));
+		ft_memset(res, arg->padding, arg->width);
+		if (arg->len < arg->prec && !arg->a_left && arg->prec_flag)
+			ft_memset(res + arg->width - arg->prec, '0', arg->prec);
+		if (arg->len < arg->prec && arg->a_left && arg->prec_flag)
+			ft_memset(res, '0', arg->prec);
+	}
+	else
+	{
+		res = (char *)ft_calloc(arg->prec + 1, sizeof(char));
+		ft_memset(res, '0', arg->prec);
+		arg->width = arg->prec;
+	}
+	return (res);
+}
+
+static void	value_align_right(char *dest, char *src, t_args *arg)
+{
+	if (arg->sign)
+	{
+		if (arg->flag_0 && !arg->prec_flag)
+			*dest = arg->sign;
+		else
+			dest[arg->width - arg->prec--] = arg->sign;
+	}
+	if (arg->prec > arg->len)
+		ft_memcpy((dest + arg->width - arg->len), src, arg->len);
+	else
+		ft_memcpy((dest + arg->width - arg->len), src, arg->len);
+}
+
+static void	value_align_left(char *dest, char *src, t_args *arg)
+{
+	if (arg->sign)
+	{
+		*dest = arg->sign;
+		if (arg->prec > arg->len)
+			ft_memcpy(dest + arg->prec - arg->len, src, arg->len);
+		else
+			ft_memcpy(dest + 1, src, arg->prec);
+	}
+	else
+	{
+		if (arg->prec > arg->len)
+			ft_memcpy(dest + arg->prec - arg->len, src, arg->len);
+		else
+			ft_memcpy(dest, src, arg->prec);
+	}
+}
+
 char	*trim_and_align_digit(char *str, t_args *arg)
 {
 	char	*res;
 
 	res = NULL;
-	//printf("\nwidth = %zu, prec = %zu, strlen = %zu\n", arg->width, arg->prec, ft_strlen(str));
-	if (ft_strlen(str) < arg->width || ft_strlen(str) < arg->prec)
+	if (arg->len < arg->width || arg->len < arg->prec)
 	{
-		if (arg->width > arg->prec)
-		{
-			res = (char *)ft_calloc(arg->width + 1, sizeof(char));
-			ft_memset(res, arg->padding, arg->width);
-			if (arg->len < arg->prec && !arg->a_left && arg->prec_flag)
-				ft_memset(res + arg->width - arg->prec, '0', arg->prec);
-			if (arg->len < arg->prec && arg->a_left && arg->prec_flag)
-				ft_memset(res, '0', arg->prec);
-		}
-		else
-		{
-			arg->padding = '0';
-			res = (char *)ft_calloc(arg->prec + 1, sizeof(char));
-			ft_memset(res, arg->padding, arg->prec);
-			arg->width = arg->prec;
-		}
+		res = set_new_line(arg);
 		if (!arg->a_left)
-		{
-			if (arg->sign) // ADD if (*str == '0')
-			{
-				if (arg->flag_0 && !arg->prec_flag)
-					*res = arg->sign;
-				else
-					res[arg->width - arg->prec--] = arg->sign;
-			}
-			if (arg->prec > arg->len)
-				ft_memcpy((res + arg->width - arg->len), str, arg->len);
-			else
-				ft_memcpy((res + arg->width - arg->len), str, arg->len);
-		}
+			value_align_right(res, str, arg);
 		else
-		{
-			if (arg->sign)
-			{
-				*res = arg->sign;
-				if (arg->prec > arg->len)
-					ft_memcpy(res + arg->prec - arg->len, str, arg->len);
-				else
-					ft_memcpy(res + 1, str, arg->prec);
-			}
-			else
-				if (arg->prec > arg->len)
-					ft_memcpy(res + arg->prec - arg->len, str, arg->len);
-				else
-					ft_memcpy(res, str, arg->prec);
-		}
+			value_align_left(res, str, arg);
 		free(str);
 	}
 	else

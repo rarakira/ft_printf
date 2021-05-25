@@ -483,6 +483,12 @@ void test_09(char *name)
 	n2 = ft_printf("ft:\t|%-3.2u| ||%10.42u||\n", 1, -1);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
+
+	printf("1: %s -> %d %d %d\n", "%-3.2u %+-3.2u % 3.2u", 1, 1, 1);
+	n1 = printf("pf:\t|%-3.2u| ||%-3.2u|| |%3.2u|\n", 1, 1, 1); // undef behaviour with '+' & ' ' should i remove mine?
+	n2 = ft_printf("ft:\t|%-3.2u| ||%+-3.2u|| |% 3.2u|\n", 1, 1, 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 }
 
 int	main(void)

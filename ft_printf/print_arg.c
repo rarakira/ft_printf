@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:31:30 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/25 12:47:30 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/25 13:53:24 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,6 @@ void	print_arg(char *fspec, va_list ap, int *count)
 		arg.str = convert_arg_u(&arg, ap);
 	else if (arg.format == 'x' || arg.format == 'X')
 		arg.str = convert_arg_x(fspec, ap);
-	else
-		ft_putstr_fd("_unknown_format_", 1); //manage later
 	if (arg.str)
 	{
 		*count += ft_strlen(arg.str);
