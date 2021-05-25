@@ -9,12 +9,15 @@ static void	print_spaces(t_args *arg, int *count)
 	}
 }
 
-char	*convert_arg_c(t_args *arg, va_list ap, int *count)
+char	*convert_arg_c_prc(t_args *arg, va_list ap, int *count)
 {
 	char	*res;
 
 	res = ft_calloc(2, sizeof(char));
-	*res = va_arg(ap, int);
+	if (arg->format == 'c')
+		*res = va_arg(ap, int);
+	if (arg->format == '%')
+		*res = '%';
 	if (*res == '\0')
 	{
 		if (!arg->a_left)

@@ -1,10 +1,13 @@
 #include "ft_printf.h"
 
-char	*convert_arg_d(t_args *arg, va_list ap)
+char	*convert_arg_d_u(t_args *arg, va_list ap)
 {
 	char	*res;
 
-	res = ft_itoa_d(va_arg(ap, int), &arg->sign);
+	if (arg->format == 'd')
+		res = ft_itoa_d(va_arg(ap, int), &arg->sign);
+	if (arg->format == 'u')
+		res = ft_itoa_d((long int)va_arg(ap, unsigned int), &arg->sign);
 	if (!res)
 		return (NULL);
 	arg->len = ft_strlen(res);

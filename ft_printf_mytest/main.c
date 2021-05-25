@@ -78,11 +78,11 @@ void test_02_2(char *name)
 	printf("Printf: %d\n", printf("|%*.*s|\n", 15, 5, str1));
 	printf("Ft_printf: %d\n", ft_printf("|%*.*s|\n", 15, 5, str1));
 	next();
-	printf("%%.s\n");
+	printf("%%.s -> %s\n", "lol");
 	printf("Printf: %d\n", printf("|%.s|\n", "lol"));
 	printf("Ft_printf: %d\n", ft_printf("|%.s|\n", "lol"));
 	next();
-	printf("%%5.s\n");
+	printf("%%5.s -> %s\n", "lol");
 	printf("Printf: %d\n", printf("|%5.s|\n", "lol"));
 	printf("Ft_printf: %d\n", ft_printf("|%5.s|\n", "lol"));
 }
@@ -491,6 +491,22 @@ void test_09(char *name)
 	next();
 }
 
+void test_10(char *name)
+{
+	int n1, n2;
+
+	print_name(name);
+
+	//int	n = 0;
+	//int	m = -123;
+
+	printf("1: %s\n", "%% %10.42%");
+	n1 = printf("pf:\t|%%| ||%10.42%||\n");
+	n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+}
+
 int	main(void)
 {
 	ft_printf("\n* * * ************* STARTING TEST ************* * * *\n");
@@ -502,8 +518,9 @@ int	main(void)
 	//test_05("05, chars");
 	//test_06("06, wtf is S?");
 	//test_07("07, d");
-	test_08("08, more d");
-	test_09("09, u");
+	//test_08("08, more d");
+	//test_09("09, u");
+	test_10("10, %%");
 	
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);

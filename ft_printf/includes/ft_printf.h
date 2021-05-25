@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/25 12:57:45 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/25 16:11:25 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ typedef struct s_args
 int		ft_printf(const char *str, ...);
 void	print_control_string(char *s, va_list ap, int *count);
 void	print_arg(char *fspec, va_list ap, int *count);
-char	*convert_arg_c(t_args *arg, va_list ap, int *count);
+char	*convert_arg_c_prc(t_args *arg, va_list ap, int *count);
 char	*convert_arg_s(t_args *arg, va_list ap);
-char	*convert_arg_d(t_args *arg, va_list ap);
-char	*convert_arg_u(t_args *arg, va_list ap);
+char	*convert_arg_d_u(t_args *arg, va_list ap);
 char	*convert_arg_x(char *fspec, va_list ap);
 char	*convert_arg_i(char *fspec, va_list ap);
 char	*convert_arg_p(char *fspec, va_list ap);
