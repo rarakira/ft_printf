@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:31:30 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/25 00:24:38 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/25 12:34:02 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void	check_for_flags(t_args *arg, char **fspec)
 			arg->sign = ' ';
 		*fspec += 1;
 	}
-	if (arg->a_left)
-		arg->padding = ' ';
 }
 
 void	init_arg(t_args *arg, va_list ap, char *fspec)
@@ -93,7 +91,7 @@ void	init_arg(t_args *arg, va_list ap, char *fspec)
 		fspec++;
 		arg->prec = get_size_arg(&fspec, ap, &(arg->prec_neg));
 	}
-	if (arg->prec_flag && arg->width > arg->prec)
+	if ((arg->prec_flag && arg->width > arg->prec) || arg->a_left)
 		arg->padding = ' ';
 }
 

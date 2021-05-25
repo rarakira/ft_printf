@@ -455,6 +455,12 @@ void test_08(char *name)
 	n2 = ft_printf("ft:\t--0*|%0*.0d|*0 0*||%0*.10d||*0--\n", -2, 0, 21, 1);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
+
+	printf("6: %s -> %d %d\n", "%0*d", -7, -54);
+	n1 = printf("pf:\t|%0*d|\n", -7, -54);
+	n2 = ft_printf("ft:\t|%0*d|\n", -7, -54);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 }
 
 int	main(void)

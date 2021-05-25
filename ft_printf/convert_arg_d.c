@@ -46,6 +46,11 @@ char	*convert_arg_d(t_args *arg, va_list ap)
 	if (!res)
 		return (NULL);
 	arg->len = ft_strlen(res);
+	if (arg->prec_flag && arg->prec == 0 && *res == '0')
+	{
+		*res = '\0';
+		arg->len = 0;
+	}
 	if (arg->prec < arg->len)
 		arg->prec = arg->len;
 	if (arg->sign)
