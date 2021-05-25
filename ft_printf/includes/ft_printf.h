@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/24 19:37:59 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/25 12:57:45 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_args
 	int		a_left; // '-'
 	int		flag_0; // '0'
 	int		flag_alt; // '#'
-	//int		flag_sign; // '+' || ' '
 	size_t	prec;
 	int		prec_flag;
 	int		prec_neg;
@@ -42,11 +41,12 @@ void	print_arg(char *fspec, va_list ap, int *count);
 char	*convert_arg_c(t_args *arg, va_list ap, int *count);
 char	*convert_arg_s(t_args *arg, va_list ap);
 char	*convert_arg_d(t_args *arg, va_list ap);
+char	*convert_arg_u(t_args *arg, va_list ap);
 char	*convert_arg_x(char *fspec, va_list ap);
-char	*convert_arg_u(char *fspec, va_list ap);
 char	*convert_arg_i(char *fspec, va_list ap);
 char	*convert_arg_p(char *fspec, va_list ap);
 char	*trim_and_align_str(char *str, t_args *arg);
 char	*trim_and_align_digit(char *str, t_args *arg);
+char	*ft_itoa_d(long int n, char	*sign);
 
 #endif

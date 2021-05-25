@@ -463,6 +463,28 @@ void test_08(char *name)
 	next();
 }
 
+void test_09(char *name)
+{
+	int n1, n2;
+
+	print_name(name);
+
+	//int	n = 0;
+	//int	m = -123;
+/*
+	printf("4: %s -> %d\n", "%+.d %+5.d", n);
+	n1 = printf("pf:\t|%+.d| ||%+5.d||\n", n, n);
+	n2 = ft_printf("ft:\t|%+.d| ||%+5.d||\n", n, n);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next(); */
+
+	printf("1: %s -> %d %d\n", "%-3.2u %10.42u", 1, -1);
+	n1 = printf("pf:\t|%-3.2u| ||%10.42u||\n", 1, -1);
+	n2 = ft_printf("ft:\t|%-3.2u| ||%10.42u||\n", 1, -1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+}
+
 int	main(void)
 {
 	ft_printf("\n* * * ************* STARTING TEST ************* * * *\n");
@@ -473,8 +495,9 @@ int	main(void)
 	//test_04("04, Xx-format");
 	//test_05("05, chars");
 	//test_06("06, wtf is S?");
-	test_07("07, d");
+	//test_07("07, d");
 	test_08("08, more d");
+	test_09("09, u");
 	
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);
