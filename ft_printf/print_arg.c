@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:31:30 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/25 16:12:10 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/26 18:33:28 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,15 @@ void	init_arg(t_args *arg, va_list ap, char *fspec)
 		arg->padding = ' ';
 }
 
-void	print_arg(char *fspec, va_list ap, int *count)
+int	print_arg(char *fspec, va_list ap, int *count)
 {
 	t_args	arg;
 
 	init_arg(&arg, ap, fspec);
 	if (arg.format == 'd' || arg.format == 'u')
-		arg.str = convert_arg_d_u(&arg, ap);
+		arg.str = convert_arg_d_u(&arg, ap, count);
 	else if (arg.format == 's')
-		arg.str = convert_arg_s(&arg, ap);
+		arg.str = convert_arg_s(&arg, ap, count);
 	else if (arg.format == 'c' || arg.format == '%')
 		arg.str = convert_arg_c_prc(&arg, ap, count);
 	else if (arg.format == 'p')
@@ -112,10 +112,13 @@ void	print_arg(char *fspec, va_list ap, int *count)
 		arg.str = convert_arg_i(fspec, ap);
 	else if (arg.format == 'x' || arg.format == 'X')
 		arg.str = convert_arg_x(fspec, ap);
+	if (!arg.str && *count == -1)
+		return (-1);
 	if (arg.str)
 	{
 		*count += ft_strlen(arg.str);
 		ft_putstr_fd(arg.str, 1);
 		free(arg.str);
 	}
+	return (0);
 }

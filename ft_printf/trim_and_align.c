@@ -56,7 +56,7 @@ static void	value_align_left(char *dest, char *src, t_args *arg)
 	}
 }
 
-char	*trim_and_align_digit(char *str, t_args *arg)
+char	*trim_and_align_digit(char *str, t_args *arg, int *count)
 {
 	char	*res;
 
@@ -64,6 +64,11 @@ char	*trim_and_align_digit(char *str, t_args *arg)
 	if (arg->len < arg->width || arg->len < arg->prec)
 	{
 		res = set_new_line(arg);
+		if (res == NULL)
+		{
+			*count = -1;
+			return (NULL);
+		}
 		if (!arg->a_left)
 			value_align_right(res, str, arg);
 		else
@@ -75,7 +80,7 @@ char	*trim_and_align_digit(char *str, t_args *arg)
 	return (res);
 }
 
-char	*trim_and_align_str(char *str, t_args *arg)
+char	*trim_and_align_str(char *str, t_args *arg, int *count)
 {
 	char	*res;
 
@@ -83,6 +88,11 @@ char	*trim_and_align_str(char *str, t_args *arg)
 	if (ft_strlen(str) < arg->width)
 	{
 		res = (char *)ft_calloc(arg->width + 1, sizeof(char));
+		if (res == NULL)
+		{
+			*count = -1;
+			return (NULL);
+		}
 		ft_memset(res, arg->padding, arg->width);
 		if (!arg->a_left)
 			ft_memcpy((res + arg->width - arg->prec), str, arg->prec);

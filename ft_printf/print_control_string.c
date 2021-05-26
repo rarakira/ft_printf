@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:26:24 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/25 15:58:33 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/26 18:13:28 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*fetch_fspec(char **s)
 	return (res);
 }
 
-void	print_control_string(char *s, va_list ap, int *count)
+int	print_control_string(char *s, va_list ap, int *count)
 {
 	char	*fspec;
 
@@ -43,8 +43,11 @@ void	print_control_string(char *s, va_list ap, int *count)
 		{
 			s++;
 			fspec = fetch_fspec(&s);
+			if (fspec == NULL)
+				return (-1);
 			print_arg(fspec, ap, count);
 			free(fspec);
 		}
 	}
+	return (0);
 }
