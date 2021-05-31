@@ -6,16 +6,16 @@
 #    By: lbaela <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/18 14:03:12 by lbaela            #+#    #+#              #
-#    Updated: 2021/05/25 16:14:18 by lbaela           ###   ########.fr        #
+#    Updated: 2021/05/31 12:53:31 by lbaela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFILES =	ft_printf.c			print_control_string.c		print_arg.c	\
-			trim_and_align.c	ft_itoa_d.c\
-			convert_arg_s.c		convert_arg_c_prc.c\
-			convert_arg_d_u.c	\
+CFILES =	ft_printf.c				print_control_string.c		print_arg.c	\
+			trim_and_align.c		ft_itoa_d.c\
+			convert_arg_s.c			convert_arg_c_prc.c\
+			convert_arg_d_u_i.c	\
 			convert_arg_temp.c
 
 OBJS = $(CFILES:.c=.o)

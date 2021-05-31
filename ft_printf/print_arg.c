@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:31:30 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/26 18:33:28 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/05/31 12:53:00 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,14 @@ int	print_arg(char *fspec, va_list ap, int *count)
 	t_args	arg;
 
 	init_arg(&arg, ap, fspec);
-	if (arg.format == 'd' || arg.format == 'u')
-		arg.str = convert_arg_d_u(&arg, ap, count);
+	if (arg.format == 'd' || arg.format == 'u' || arg.format == 'i')
+		arg.str = convert_arg_d_u_i(&arg, ap, count);
 	else if (arg.format == 's')
 		arg.str = convert_arg_s(&arg, ap, count);
 	else if (arg.format == 'c' || arg.format == '%')
 		arg.str = convert_arg_c_prc(&arg, ap, count);
 	else if (arg.format == 'p')
 		arg.str = convert_arg_p(fspec, ap);
-	else if (arg.format == 'i')
-		arg.str = convert_arg_i(fspec, ap);
 	else if (arg.format == 'x' || arg.format == 'X')
 		arg.str = convert_arg_x(fspec, ap);
 	if (!arg.str && *count == -1)
