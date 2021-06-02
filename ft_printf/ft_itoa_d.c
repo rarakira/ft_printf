@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 12:53:01 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/25 12:56:55 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/01 21:14:58 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,71 @@ char	*ft_itoa_d(long int n, char	*sign)
 	num = ft_calloc(len + 1, sizeof(char));
 	if (num)
 		translate_nums(num, nn, len);
+	return (num);
+}
+
+char	convert_to_hex(int n)
+{
+	if (n < 10)
+		return (n + '0');
+	if (n == 10)
+		return ('a');
+	if (n == 11)
+		return ('b');
+	if (n == 12)
+		return ('c');
+	if (n == 13)
+		return ('d');
+	if (n == 14)
+		return ('e');
+	if (n == 15)
+		return ('f');
+	return (0);
+}
+static void	translate_hex(char *num, long long int n, unsigned int len)
+{
+	int		rem;
+	int		res;
+
+	rem = n;
+	res = 0;
+	if (n == 0)
+		num[--len] = '0';
+	while (rem)
+	{
+		res = (rem / 16);
+		rem = rem - (res * 16);
+		num[--len] = convert_to_hex(res);
+	}
+}
+
+char	*ft_itoa_x(long int n, char	*sign)
+{
+	char			*num;
+	unsigned int	len;
+	long int		res;
+	long long int	rem;
+
+	rem = n;
+	res = 0;
+	len = 1;
+	if (rem < 0)
+	{
+		*sign = '-';
+		rem *= -1;
+	}
+	while (rem != 0)
+	{
+		res = (rem / 16);
+		rem = rem - (res * 16);
+		len++;
+	}
+	num = ft_calloc(len + 1, sizeof(char));
+	if (*sign == '-')
+		rem = n * -1;
+	else
+		rem = n;
+	if (num)
+		translate_hex(num, n, len);
 	return (num);
 }
