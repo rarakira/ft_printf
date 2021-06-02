@@ -6,14 +6,14 @@
 #    By: lbaela <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/18 14:03:12 by lbaela            #+#    #+#              #
-#    Updated: 2021/06/01 20:07:32 by lbaela           ###   ########.fr        #
+#    Updated: 2021/06/02 19:20:43 by lbaela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 CFILES =	ft_printf.c				print_control_string.c		print_arg.c	\
-			trim_and_align.c		ft_itoa_d.c\
+			trim_and_align_str.c	trim_and_align_digit.c		ft_itoa_d.c\
 			convert_arg_s.c			convert_arg_c_prc.c\
 			convert_arg_d_u_i.c		convert_arg_x.c\
 			convert_arg_temp.c

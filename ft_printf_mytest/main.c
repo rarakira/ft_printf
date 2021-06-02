@@ -283,6 +283,23 @@ void test_04(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
+	printf("%s -> %d\n", "test 9: %-5.0x %-5.0X", 100);
+	n1 = printf("pf:\t|%-5.0x| ||%-5.0X||\n", 100, 100);
+	n2 = ft_printf("ft:\t|%-5.0x| ||%-5.0X||\n", 100, 100);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d\n", "test 10: %#-5.0x %#-5.0X %#5.0x", 100);
+	n1 = printf("pf:\t|%#-5.0x| ||%#-5.0X|| |%#5.0x|\n", 100, 100, 100);
+	n2 = ft_printf("ft:\t|%#-5.0x| ||%#-5.0X|| |%#5.0x|\n", 100, 100, 100);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d\n", "test 11: %#X %#X %#x", 0);
+	n1 = printf("pf:\t|%#X| ||%#X|| |%#x|\n", 0, 0, 0);
+	n2 = ft_printf("ft:\t|%#X| ||%#X|| |%#x|\n", 0, 0, 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 }
 
 void test_05(char *name)

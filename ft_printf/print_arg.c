@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 12:31:30 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/01 20:06:40 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/02 18:10:21 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	check_for_flags(t_args *arg, char **fspec)
 			arg->padding = '0';
 			arg->flag_0 = 1;
 		}
-		else if (**fspec == '#')
+		else if (**fspec == '#' && (arg->format == 'x' || arg->format == 'X'))
 			arg->flag_alt = 1;
 		else if (**fspec == '+' && arg->sign != '-')
 			arg->sign = '+';
