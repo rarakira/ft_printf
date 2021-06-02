@@ -225,22 +225,64 @@ void test_03(char *name)
 
 void test_04(char *name)
 {
+	int n1, n2;
+
 	print_name(name);
-	printf("Here is the %%.0x format = |%.0x| (%d), and %%.0X = |%.0X|\n\n", 125, 125, 125);
-	printf("Here is the %%.10x format = |%.10x| (%d), and %%.10X = |%.10X|\n\n", 125, 125, 125);
-	printf("Here is the %%-10.5x format = |%-10.5x| (%d), and %%-10.5X = |%-10.5X|\n\n", 125, 125, 125);
-	printf("Here is the %%-10.5x format = |%-10.5x| (%d), and %%-10.5X = |%-10.5X|\n\n", -125, -125, -125);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 0, 0, 0);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 1, 1, 1);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", -1, -1, -1);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 2, 2, 2);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", -2, -2, -2);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 16, 16, 16);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", -16, -16, -16);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 17, 17, 17);
-	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", -17, -17, -17);
-	ft_printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 0, 0, 0);
-	ft_printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 1, 1, 1);
+
+	printf("%s -> %d\n", "test 1: %.0x %.0X", 125);
+	n1 = printf("pf:\t|%.0x| ||%.0X||\n", 125, 125);
+	n2 = ft_printf("ft:\t|%.0x| ||%.0X||\n", 125, 125);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d\n", "test 2 %.10x %.10X", 125);
+	n1 = printf("pf:\t|%.10x| ||%.10X||\n", 125, 125);
+	n2 = ft_printf("ft:\t|%.10x| ||%.10X||\n", 125, 125);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d\n", "test 3: %-10.5x %-10.5X", 125);
+	n1 = printf("pf:\t|%-10.5x| ||%-10.5X||\n", 125, 125);
+	n2 = ft_printf("ft:\t|%-10.5x| ||%-10.5X||\n", 125, 125);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d\n", "test 4: %x %X", 17);
+	n1 = printf("pf:\t|%x| ||%X||\n", 17, 17);
+	n2 = ft_printf("ft:\t|%x| ||%X||\n", 17, 17);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d\n", "test 5: %x %X", -17);
+	n1 = printf("pf:\t|%x| ||%X||\n", -17, -17);
+	n2 = ft_printf("ft:\t|%x| ||%X||\n", -17, -17);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d\n", "test 6.1: %x %X", 123456789);
+	n1 = printf("pf:\t|%x| ||%X||\n", 123456789, 123456789);
+	n2 = ft_printf("ft:\t|%x| ||%X||\n", 123456789, 123456789);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d\n", "test 6.2: %x %X", -123456789);
+	n1 = printf("pf:\t|%x| ||%X||\n", -123456789, -123456789);
+	n2 = ft_printf("ft:\t|%x| ||%X||\n", -123456789, -123456789);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d %d %d\n", "test 7: %-3.2x %10.42x %10.42x", 10, 10, -10);
+	n1 = printf("pf:\t|%-3.2x| ||%10.42x|| |%10.42x|\n", 10, 10, -10);
+	n2 = ft_printf("ft:\t|%-3.2x| ||%10.42x|| |%10.42x|\n", 10, 10, -10);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("%s -> %d %d %d\n", "test 8: %#-3.2X %#10.42x %#10.42x", 10, 10, -10);
+	n1 = printf("pf:\t|%#-3.2X| ||%#10.42x|| |%#10.42x|\n", 10, 10, -10);
+	n2 = ft_printf("ft:\t|%#-3.2X| ||%#10.42x|| |%#10.42x|\n", 10, 10, -10);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
 }
 
 void test_05(char *name)

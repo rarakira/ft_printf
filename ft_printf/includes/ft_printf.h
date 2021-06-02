@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/01 21:13:33 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/02 16:35:19 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ char	*convert_arg_p(char *fspec, va_list ap);
 char	*trim_and_align_str(char *str, t_args *arg, int *count);
 char	*trim_and_align_digit(char *str, t_args *arg, int *count);
 char	*ft_itoa_d(long int n, char	*sign);
-char	*ft_itoa_x(long int n, char	*sign);
+char	*ft_itoa_x(long int n, char	*sign, char format);
 
 #endif

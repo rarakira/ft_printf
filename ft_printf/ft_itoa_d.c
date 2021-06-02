@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 12:53:01 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/02 14:56:42 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/02 17:21:48 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	translate_nums(char *num, long long int n, unsigned int len)
 	}
 }
 
-/* Function converts integers to strings (memory allocated). */
 char	*ft_itoa_d(long int n, char	*sign)
 {
 	char			*num;
@@ -50,62 +49,68 @@ char	*ft_itoa_d(long int n, char	*sign)
 	return (num);
 }
 
-char	convert_to_hex(int n)
+char	convert_to_hex(int n, char format)
 {
 	if (n < 10)
 		return (n + '0');
 	else
 	{
 		n -= 10;
+		if (format == 'X')
+			return ('A' + n);
 		return ('a' + n);
 	}
 }
-static void	translate_hex(char *num, long long int n, unsigned int len)
+
+static void	translate_hex(char *num, long long int n, unsigned int len,
+char format)
 {
-	int		rem;
-	int		res;
+	long int		rem;
+	long int		res;
 
 	rem = n;
+	res = n;
 	if (n == 0)
 		num[--len] = '0';
-	while (rem)
+	while (res)
 	{
-		//printf("rem = %d, res = %d\n", rem, res);
-		res = (rem / 16);
-		rem = (rem - (rem % 16)) / 16;
-		printf("\nrem = %d, res = %d\n", rem, res);
-		num[--len] = convert_to_hex(res);
+		if (res > 16)
+		{
+			rem = res % 16;
+			res = (res / 16);
+			num[--len] = convert_to_hex(rem, format);
+		}
+		else
+		{
+			num[--len] = convert_to_hex(res, format);
+			res = 0;
+		}
 	}
 }
 
-char	*ft_itoa_x(long int n, char	*sign)
+char	*ft_itoa_x(long int n, char	*sign, char format)
 {
 	char			*num;
 	unsigned int	len;
-	long int		res;
-	long long int	rem;
+	long long int	res;
 
-	rem = n;
-	res = 0;
-	len = 1;
-	if (rem < 0)
+	if (n < 0)
 	{
 		*sign = '-';
-		rem *= -1;
+		n *= -1;
 	}
-	while (rem >= 16)
+	res = n;
+	len = 1;
+	while (res >= 16 && len++)
+		res = res / 16;
+	res = n;
+	if (*sign == '-')
 	{
-		res = rem / 16;
-		rem = (rem % 16);
-		len++;
-		printf("rem = %lld, res = %ld\n", rem, res);
+		len = 8;
+		res = 4294967295 - n + 1;
 	}
 	num = ft_calloc(len + 1, sizeof(char));
-	if (*sign == '-')
-		rem = n * -1;
-	else
-		rem = n;
 	if (num)
-		translate_hex(num, n, len);
+		translate_hex(num, res, len, format);
 	return (num);
 }
