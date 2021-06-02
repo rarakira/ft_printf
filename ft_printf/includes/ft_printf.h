@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/31 12:53:43 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/01 21:13:33 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ int		print_arg(char *fspec, va_list ap, int *count);
 char	*convert_arg_c_prc(t_args *arg, va_list ap, int *count);
 char	*convert_arg_s(t_args *arg, va_list ap, int *count);
 char	*convert_arg_d_u_i(t_args *arg, va_list ap, int *count);
-char	*convert_arg_x(char *fspec, va_list ap);
+char	*convert_arg_x(t_args *arg, va_list ap, int *count);
 char	*convert_arg_i(char *fspec, va_list ap);
 char	*convert_arg_p(char *fspec, va_list ap);
 char	*trim_and_align_str(char *str, t_args *arg, int *count);
 char	*trim_and_align_digit(char *str, t_args *arg, int *count);
 char	*ft_itoa_d(long int n, char	*sign);
+char	*ft_itoa_x(long int n, char	*sign);
 
 #endif

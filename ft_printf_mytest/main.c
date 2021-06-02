@@ -229,6 +229,18 @@ void test_04(char *name)
 	printf("Here is the %%.0x format = |%.0x| (%d), and %%.0X = |%.0X|\n\n", 125, 125, 125);
 	printf("Here is the %%.10x format = |%.10x| (%d), and %%.10X = |%.10X|\n\n", 125, 125, 125);
 	printf("Here is the %%-10.5x format = |%-10.5x| (%d), and %%-10.5X = |%-10.5X|\n\n", 125, 125, 125);
+	printf("Here is the %%-10.5x format = |%-10.5x| (%d), and %%-10.5X = |%-10.5X|\n\n", -125, -125, -125);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 0, 0, 0);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 1, 1, 1);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", -1, -1, -1);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 2, 2, 2);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", -2, -2, -2);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 16, 16, 16);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", -16, -16, -16);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 17, 17, 17);
+	printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", -17, -17, -17);
+	ft_printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 0, 0, 0);
+	ft_printf("Here is the %%x format = |%x| (%d), and %%X = |%X|\n\n", 1, 1, 1);
 }
 
 void test_05(char *name)
