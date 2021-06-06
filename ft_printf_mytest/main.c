@@ -1,6 +1,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 #include <stdio.h>
+#include <limits.h>
 
 void print_name(char *name)
 {
@@ -546,7 +547,30 @@ void test_08(char *name)
 	n2 = ft_printf("ft:\t|%+d|\n", 0);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
-	
+
+	printf("9: %s -> 3, -3\n", "%.6d %.6d");
+	n1 = printf("pf:\t|%.6d| ||%.6d||\n", 3, -3);
+	n2 = ft_printf("ft:\t|%.6d| ||%.6d||\n", 3, -3);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9: %s -> 3, -3\n", "%.6i %.6i");
+	n1 = printf("pf:\t|%.6i| ||%.6i||\n", 3, -3);
+	n2 = ft_printf("ft:\t|%.6i| ||%.6i||\n", 3, -3);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9: %s -> -6, 3, -6, -3\n", "%.*d %.*d");
+	n1 = printf("pf:\t|%.*d| ||%.*d||\n", -6, 3, -6, -3);
+	n2 = ft_printf("ft:\t|%.*d| ||%.*d||\n", -6, 3, -6, -3);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9: %s -> -6, 3, -6, -3\n", "%.*i");
+	n1 = printf("pf:\t|%.*i| ||%.*i||\n", -6, 3, -6, -3);
+	n2 = ft_printf("ft:\t|%.*i| ||%.*i||\n", -6, 3, -6, -3);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 }
 
 void test_09(char *name)
@@ -618,11 +642,30 @@ void test_12(char *name)
 	//int	n = 0;
 	//int	m = -123;
 
-	printf("1: %s\n", "%% %10.42%");
-	n1 = printf("pf:\t|%%| ||%10.42%||\n");
-	n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	printf("1: %s -> 4418596912\n", "%lx");
+	n1 = printf("pf:\t||%lx||\n", 4418596912);
+	n2 = ft_printf("ft:\t||%lx||\n", 4418596912);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
+
+	printf("2: %s -> 4418596912\n", "%ld");
+	n1 = printf("pf:\t||%ld||\n", 4418596912);
+	n2 = ft_printf("ft:\t||%ld||\n", 4418596912);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s -> 4, 5, 10, 10, 21, -10\n", "*%-*.*x* *%*.*x*");
+	n1 = printf("pf:\t||*%-*.*x* *%*.*x*||\n", 4, 5, 10, 10, 21, -10);
+	n2 = ft_printf("ft:\t||*%-*.*x* *%*.*x*||\n", 4, 5, 10, 10, 21, -10);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s -> -6, 2, 102, 10, 21, 101\n", "*%*.*x* *%*.*x*");
+	n1 = printf("pf:\t||*%*.*x* *%*.*x*||\n", -6, 2, 102, 10, 21, 101);
+	n2 = ft_printf("ft:\t||*%*.*x* *%*.*x*||\n", -6, 2, 102, 10, 21, 101);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
 }
 
 void test_13(char *name)
@@ -698,6 +741,125 @@ void test_16(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 }
+
+void test_17(char *name)
+{
+	int n1 = 0;
+	int n2 = 0;
+	int	*a = &n1;
+	int *b = &n1;
+	int aa = 16;
+	//int bb = 17;
+
+	print_name(name);
+
+	printf("Test 1: %s\n", "%p %p");
+	n1 = printf("pf:\t|%p| ||%p||\n", a, b);
+	n2 = ft_printf("ft:\t|%p| ||%p||\n", a, b);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("Test 2: %s -> NULL\n", "%p %p");
+	n1 = printf("pf:\t|%p|\n", NULL);
+	n2 = ft_printf("ft:\t|%p|\n", NULL);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("Test 2.2: %s -> NULL\n", "%12p %-12p");
+	n1 = printf("pf:\t|%12p| ||%-12p||\n", NULL, NULL);
+	n2 = ft_printf("ft:\t|%12p| ||%-12p||\n", NULL, NULL);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("Test 2_x: %s -> 0\n", "%x %x");
+	n1 = printf("pf:\t|%x|\n", 0);
+	n2 = ft_printf("ft:\t|%x|\n", 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("Test 3: %s\n", "%20p %20p");
+	n1 = printf("pf:\t|%20p| ||%20p||\n", a, b);
+	n2 = ft_printf("ft:\t|%20p| ||%20p||\n", a, b);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("Test 4: %s\n", "%-25p %-25p");
+	n1 = printf("pf:\t|%-25p| ||%-25p||\n", a, b);
+	n2 = ft_printf("ft:\t|%-25p| ||%-25p||\n", a, b);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("Test 5: %s -> &aa\n", "%p %p");
+	n1 = printf("pf:\t|%p|\n", &aa);
+	n2 = ft_printf("ft:\t|%p|\n", &aa);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	/*
+	long int a01 = 123456;
+	int a02 = 123456;
+	char a03 = 'a';
+	char *a04 = "123456"; */
+
+	static char	a01;
+	static unsigned char a02;
+	static short a03;
+	static unsigned short a04;
+
+	printf("Test 5: %s -> &a01, &a02, &a03, &a04\n", "%p %p %p %p");
+	n1 = printf("pf:\t|%p %p %p %p|\n", &a01, &a02, &a03, &a04);
+	n2 = ft_printf("ft:\t|%p %p %p %p|\n", &a01, &a02, &a03, &a04);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	/*
+	printf("Test 6: %s -> 5, NULL\n", "%.*p");
+	//n1 = printf("pf:\t|%.*p|\n", 5, NULL);
+	n2 = ft_printf("ft:\t|%.*p|\n", 5, NULL);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next(); */
+
+	//printf("%zu\n", sizeof(int *));
+	//printf("%zu\n", sizeof(long int *));
+	//printf("%zu\n", sizeof(long long int *));
+
+	/*
+	printf("Test 7: %s -> LONG_MIN, LONG_MAX\n", "%p %p");
+	n1 = printf("pf:\t|%p| ||%p||\n", &LONG_MIN, &LONG_MAX);
+	n2 = ft_printf("ft:\t|%p| ||%p||\n", &LONG_MIN, &LONG_MAX);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next(); */
+
+	printf("LONG_MIN = %ld,\n\n", ULONG_MAX, LONG_MIN);
+	printf("Test 7: %s -> LONG_MIN\n", "%lx");
+	n1 = printf("pf:\t|%lx|\n", LONG_MIN);
+	n2 = ft_printf("ft:\t|%lx|\n", LONG_MIN);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("LONG_MAX = %ld\n\n", LONG_MAX);
+	printf("Test 7: %s -> LONG_MAX\n", "%lx");
+	n1 = printf("pf:\t|%lx|\n", LONG_MAX);
+	n2 = ft_printf("ft:\t|%lx|\n", LONG_MAX);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("ULONG_MAX = %lu\n\n", ULONG_MAX);
+	printf("Test 7: %s -> ULONG_MAX, -ULONG_MAX\n", "%lx %lx");
+	n1 = printf("pf:\t|%lx| ||%lx||\n", ULONG_MAX, -ULONG_MAX);
+	n2 = ft_printf("ft:\t|%lx| ||%lx||\n", ULONG_MAX, -ULONG_MAX);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("ULONG_MAX = %lu\n\n", ULONG_MAX);
+	printf("Test 7: %s -> INT_MIN, INT_MAX\n", "%x %x");
+	n1 = printf("pf:\t|%x| ||%x||\n", INT_MIN, INT_MAX);
+	n2 = ft_printf("ft:\t|%x| ||%x||\n", INT_MIN, INT_MAX);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+	
+}
+
 int	main(void)
 {
 	ft_printf("\n* * * ************* STARTING TEST ************* * * *\n");
@@ -705,7 +867,7 @@ int	main(void)
 	//test_02("02, return values");
 	//test_02_2("02-2, return values (strings)");
 	//test_03("03, string args");
-	test_04("04, Xx-format");
+	//test_04("04, Xx-format");
 	//test_05("05, chars");
 	//test_06("06, wtf is S?");
 	//test_07("07, d");
@@ -713,11 +875,12 @@ int	main(void)
 	//test_09("09, u");
 	//test_10("10, %%");
 	//test_11("11, p");
-	//test_12("12, x & X");
+	test_12("12, x & X");
 	//test_13("13, i");
 	//test_14("14, n f g e");
 	//test_15("15, l ll h hh");
 	//test_16("16, #");
+	//test_17("17, p");
 	
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);

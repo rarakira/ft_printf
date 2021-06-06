@@ -2,6 +2,8 @@
 
 static void	if_alt(char *str, char f)
 {
+	if (f == 'p')
+		f = 'x';
 	while (*str)
 	{
 		if (*str == '0')
@@ -21,13 +23,13 @@ static char	*set_new_line(t_args *arg)
 	{
 		res = (char *)ft_calloc(arg->width + 1, sizeof(char));
 		ft_memset(res, arg->padding, arg->width);
-		if (arg->len < arg->prec && !arg->a_left && arg->prec_flag)
+		if (arg->len < arg->prec && !arg->a_left)
 		{
 			ft_memset(res + arg->width - arg->prec, '0', arg->prec);
 			if (arg->flag_alt)
 				res[arg->width - arg->prec + 1] = arg->format;
 		}
-		if (arg->len < arg->prec && arg->a_left && arg->prec_flag)
+		if (arg->len < arg->prec && arg->a_left)
 			ft_memset(res, '0', arg->prec);
 	}
 	else
@@ -77,7 +79,7 @@ char	*trim_and_align_digit(char *str, t_args *arg, int *count)
 	char	*res;
 
 	res = NULL;
-	if (arg->flag_alt && *str != '0')
+	if ((arg->flag_alt && *str != '0') || (*str == '0' && arg->format == 'p'))
 		arg->prec += 2;
 	else if (arg->flag_alt && *str == '0')
 		arg->flag_alt = 0;
