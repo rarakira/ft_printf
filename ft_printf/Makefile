@@ -6,7 +6,7 @@
 #    By: lbaela <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/18 14:03:12 by lbaela            #+#    #+#              #
-#    Updated: 2021/06/08 16:25:52 by lbaela           ###   ########.fr        #
+#    Updated: 2021/06/08 17:37:23 by lbaela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ CFILES =	ft_printf.c				print_control_string.c\
 			trim_and_align_str.c	trim_and_align_digit.c\
 			ft_itoa_d.c				ft_itoa_u.c					ft_itoa_x.c\
 			convert_arg_s.c			convert_arg_c_prc.c\
-			convert_arg_d_u_i.c		convert_arg_x_p.c\
-			convert_arg_temp.c
+			convert_arg_d_u_i.c		convert_arg_x_p.c
 
 OBJS = $(CFILES:.c=.o)
 

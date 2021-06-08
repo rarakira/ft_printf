@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 18:00:45 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 12:50:33 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/08 17:35:10 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	init_arg(t_args *arg)
 	arg->prec_flag = 0;
 	arg->prec_neg = 0;
 	arg->str = NULL;
-	arg->l = 0;
-	arg->h = 0;
+	arg->mod_l = 0;
+	arg->mod_h = 0;
 }
 
 void	get_arg(t_args *arg, va_list ap, char *fspec)

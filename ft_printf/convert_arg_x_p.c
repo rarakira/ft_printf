@@ -6,7 +6,7 @@ static char	*get_arg_string(t_args *arg, va_list ap)
 
 	if (arg->format == 'x' || arg->format == 'X')
 	{
-		if (arg->l != 0)
+		if (arg->mod_l != 0)
 			res = ft_itoa_x(va_arg(ap, long int), arg);
 		else
 			res = ft_itoa_x((long int) va_arg(ap, int), arg);

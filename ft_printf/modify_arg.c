@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:50:45 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 12:51:04 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/08 17:35:12 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	check_for_mods(t_args *arg, char **fspec)
 	while ((*(*fspec + len) == 'l' || *(*fspec + len) == 'h') && len >= 0)
 	{
 		if (*(*fspec + len) == 'l')
-			arg->l += 1;
+			arg->mod_l += 1;
 		else if (*(*fspec + len) == 'h')
-			arg->h += 1;
+			arg->mod_h += 1;
 		len--;
 	}
 }
