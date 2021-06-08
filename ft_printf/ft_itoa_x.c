@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 12:53:01 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 16:37:58 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/08 17:19:41 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,21 @@ char	*ft_itoa_x(long int n, t_args *arg)
 	num = ft_calloc(len + 1, sizeof(char));
 	if (num)
 		translate_hex(num, res, len, arg->format);
+	return (num);
+}
+
+char	*ft_itoa_p(unsigned long int n, t_args *arg)
+{
+	char				*num;
+	unsigned int		len;
+	unsigned long int	res;
+
+	res = n;
+	len = 1;
+	while (res >= 16 && len++)
+		res = res / 16;
+	num = ft_calloc(len + 1, sizeof(char));
+	if (num)
+		translate_hex(num, n, len, arg->format);
 	return (num);
 }

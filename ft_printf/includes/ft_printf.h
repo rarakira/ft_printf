@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 14:29:34 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/08 17:19:55 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 typedef struct s_args
 {
 	char	format;
-	char	padding; // '0' || ' '
+	char	padding;
 	char	sign;
 	size_t	width;
 	size_t	len;
-	int		a_left; // '-'
-	int		flag_0; // '0'
-	int		flag_alt; // '#'
+	int		a_left;
+	int		flag_0;
+	int		flag_alt;
 	size_t	prec;
 	int		prec_flag;
 	int		prec_neg;
@@ -54,6 +54,6 @@ char	*trim_and_align_digit(char *str, t_args *arg, int *count);
 char	*ft_itoa_d(long int n, char *sign);
 char	*ft_itoa_x(long int n, t_args *arg);
 char	*ft_itoa_u(unsigned long int n);
-//char	*ft_itoa_p(long long int n, char *sign, char format);
+char	*ft_itoa_p(unsigned long int n, t_args *arg);
 
 #endif

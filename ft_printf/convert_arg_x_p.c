@@ -12,7 +12,7 @@ static char	*get_arg_string(t_args *arg, va_list ap)
 			res = ft_itoa_x((long int) va_arg(ap, int), arg);
 	}
 	if (arg->format == 'p')
-		res = ft_itoa_x(va_arg(ap, unsigned long int), arg);
+		res = ft_itoa_p(va_arg(ap, unsigned long int), arg);
 	return (res);
 }
 

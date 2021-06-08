@@ -1091,14 +1091,14 @@ int	main(void)
 	//test_08("08, more d");
 	//test_09("09, u");
 	//test_10("10, %%");
-	//test_11("11, p");
-	test_12("12, x & X");
+	test_11("11, p");
+	//test_12("12, x & X");
 	//test_13("13, i");
 	//test_14("14, n f g e");
 	//test_15("15, l ll h hh");
-	test_16("16, #");
+	//test_16("16, #");
 	test_17("17, p");
-	test_18("Troubleshooting");
+	//test_18("Troubleshooting");
 
 	/*
 	int n = 0;
