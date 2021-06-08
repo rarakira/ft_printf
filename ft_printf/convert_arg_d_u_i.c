@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-char	*convert_arg_d_u_i(t_args *arg, va_list ap, int *count)
+static char	*get_arg_string(t_args *arg, va_list ap)
 {
 	char	*res;
 
@@ -18,6 +18,14 @@ char	*convert_arg_d_u_i(t_args *arg, va_list ap, int *count)
 		else
 			res = ft_itoa_d((long int) va_arg(ap, unsigned int), &arg->sign);
 	}
+	return (res);
+}
+
+char	*convert_arg_d_u_i(t_args *arg, va_list ap, int *count)
+{
+	char	*res;
+
+	res = get_arg_string(arg, ap);
 	if (res == NULL)
 	{
 		*count = -1;

@@ -1,13 +1,26 @@
 #include "ft_printf.h"
 
-char	*convert_arg_x_p(t_args *arg, va_list ap, int *count)
+static char	*get_arg_string(t_args *arg, va_list ap)
 {
 	char	*res;
 
 	if (arg->format == 'x' || arg->format == 'X')
-		res = ft_itoa_x(va_arg(ap, int), &arg->sign, arg->format);
+	{
+		if (arg->l != 0)
+			res = ft_itoa_x(va_arg(ap, long int), arg);
+		else
+			res = ft_itoa_x((long int) va_arg(ap, int), arg);
+	}
 	if (arg->format == 'p')
-		res = ft_itoa_x(va_arg(ap, long int), &arg->sign, arg->format);
+		res = ft_itoa_x(va_arg(ap, unsigned long int), arg);
+	return (res);
+}
+
+char	*convert_arg_x_p(t_args *arg, va_list ap, int *count)
+{
+	char	*res;
+
+	res = get_arg_string(arg, ap);
 	if (res == NULL)
 	{
 		*count = -1;

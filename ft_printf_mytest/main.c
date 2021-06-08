@@ -982,19 +982,99 @@ void test_18(char *name)
 
 	print_name(name);
 
-	printf("1: %s -> 43\n", "%#5x");
-	n1 = printf("pf:\t|%#5x|\n", 43);
-	n2 = ft_printf("ft:\t|%#5x|\n", 43);
+	printf("1: %s -> 43\n", "%#05x");
+	n1 = printf("pf:\t|%#05x|\n", 43);
+	n2 = ft_printf("ft:\t|%#05x|\n", 43);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
-	printf("1: %s -> 43\n", "%#5X");
-	n1 = printf("pf:\t|%#5X|\n", 43);
-	n2 = ft_printf("ft:\t|%#5X|\n", 43);
+	printf("1: %s -> 43\n", "%#05X");
+	n1 = printf("pf:\t|%#05X|\n", 43);
+	n2 = ft_printf("ft:\t|%#05X|\n", 43);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
+	printf("1: %s -> 3254267760\n", "%lx");
+	n1 = printf("pf:\t|%lx|\n", 3254267760);
+	n2 = ft_printf("ft:\t|%lx|\n", 3254267760);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 
+	printf("1: %s -> \"3254267760\"\n", "%p");
+	n1 = printf("pf:\t|%p|\n", "3254267760");
+	n2 = ft_printf("ft:\t|%p|\n", "3254267760");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	long int a_l_min = LONG_MIN;
+	long int a_l_max = LONG_MAX;
+
+	printf("Test 7: %s -> LONG_MIN, LONG_MAX\n", "%p %p");
+	n1 = printf("pf:\t|%p| ||%p||\n", &a_l_min, &a_l_max);
+	n2 = ft_printf("ft:\t|%p| ||%p||\n", &a_l_min, &a_l_max);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("LONG_MIN = %ld,\n\n", LONG_MIN);
+	printf("Test 7: %s -> LONG_MIN\n", "%lx");
+	n1 = printf("pf:\t|%lx|\n", LONG_MIN);
+	n2 = ft_printf("ft:\t|%lx|\n", LONG_MIN);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	print_name("----------------------------------");
+
+	printf("ULONG_MAX = %lu\n\n", ULONG_MAX);
+	printf("Test 7: %s -> ULONG_MAX, -ULONG_MAX\n", "%lx %lx");
+	n1 = printf("pf:\t|%lx| ||%lx||\n", ULONG_MAX, -ULONG_MAX);
+	n2 = ft_printf("ft:\t|%lx| ||%lx||\n", ULONG_MAX, -ULONG_MAX);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("Test 7.2: %s -> LONG_MIN + 1\n", "%lx");
+	n1 = printf("pf:\t|%lx|\n", LONG_MIN + 1);
+	n2 = ft_printf("ft:\t|%lx|\n", LONG_MIN + 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	wchar_t	 empty[] = {0};
+	wchar_t	 s[] = {u'ƀ', u'ɏ', u'ɐ', ' ', u'ʯ', ' ', u'ʰ', u'˿', ' ', u'ୟ', ' ', u'௫', ' ', ' ', u'࿚', 0};
+	//wchar_t	 s[] = {' ', 'ƀ', 'ɏ', 'ɐ', ' ', 'ʯ', ' ', 'ʰ', '˿', ' ', 'ୟ', ' ', '௫', ' ', ' ', '࿚', 0};
+
+/*
+	printf("Test 8: %s -> \"ƀ абв\"\n", "%ls");
+	n1 = printf("pf:\t|%ls|\n", "ƀ абв");
+	n2 = ft_printf("ft:\t|%ls|\n", "ƀ абв");
+	printf("\nRES LEN: pf: %d, ft: %d\n", n1, n2);
+	next();
+*/
+	printf("Test 8: %s -> s\n", "%ls");
+	n1 = printf("pf:\t|%ls|\n", s);
+	n2 = ft_printf("ft:\t|%ls|\n", s);
+	printf("\nRES LEN: pf: %d, ft: %d\n", n1, n2);
+	next();
+
+	printf("Test 9: %s -> empty\n", "%ls");
+	n1 = printf("pf:\t|%ls|\n", empty);
+	n2 = ft_printf("ft:\t|%ls|\n", empty);
+	printf("\nRES LEN: pf: %d, ft: %d\n", n1, n2);
+	next();
+
+/*
+	char *str = "Hello World";
+	printf("Wierd test:\n");
+	n1 = printf("pf: |%15p| ||%*.7d|| MIXED |%*.*s| TEST! ||%%%05%%%|| I |%10.7u| H%dPE %c%c %.3sSH %10.6x%-7.5X YOUR PRINTF!%%\n", &str, 8, -42, -5, 3, "woop", 15975, 0, 'I', 'T', "CRASH", 15, 15013);
+	n2 = ft_printf("ft: |%15p| ||%*.7d|| MIXED |%*.*s| TEST! ||%%%05%%%|| I |%10.7u| H%dPE %c%c %.3sSH %10.6x%-7.5X YOUR PRINTF!%%\n", &str, 8, -42, -5, 3, "woop", 15975, 0, 'I', 'T', "CRASH", 15, 15013);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("Wierd test:\n");
+	n1 = printf("pf: %15p %*.7d MIXED %*.*s TEST! %%%05%%% I %10.7u H%dPE %c%c %.3sSH %10.6x%-7.5X YOUR PRINTF!%%\n", &str, 8, -42, -5, 3, "woop", 15975, 0, 'I', 'T', "CRASH", 15, 15013);
+	n2 = ft_printf("ft: %15p %*.7d MIXED %*.*s TEST! %%%05%%% I %10.7u H%dPE %c%c %.3sSH %10.6x%-7.5X YOUR PRINTF!%%\n", &str, 8, -42, -5, 3, "woop", 15975, 0, 'I', 'T', "CRASH", 15, 15013);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+*/
+	
 }
 
 int	main(void)
@@ -1009,16 +1089,25 @@ int	main(void)
 	//test_06("06, wtf is S?");
 	//test_07("07, d");
 	//test_08("08, more d");
-	test_09("09, u");
+	//test_09("09, u");
 	//test_10("10, %%");
 	//test_11("11, p");
 	test_12("12, x & X");
 	//test_13("13, i");
 	//test_14("14, n f g e");
 	//test_15("15, l ll h hh");
-	//test_16("16, #");
+	test_16("16, #");
 	test_17("17, p");
 	test_18("Troubleshooting");
+
+	/*
+	int n = 0;
+	unsigned int m = 3254267760;
+
+	printf("sizeof: unsigned long int = %zu, unsigned int = %zu, long int = %zu\n", sizeof(unsigned long int), sizeof(unsigned int), sizeof(long int));
+	printf("Sizeof: &n = %zu, m = %zu, &m = %zu\n", sizeof(&n), sizeof(m), sizeof(&m)); */
+
+	//printf("Before: flag_alt = %c, prec_flag = %d, prec = %zu, len = %zu, format = %c\n", arg->flag_alt, arg->prec_flag, arg->prec, arg->len, arg->format);
 	
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);

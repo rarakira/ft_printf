@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_d.c                                        :+:      :+:    :+:   */
+/*   ft_itoa_u.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 12:53:01 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 16:24:34 by lbaela           ###   ########.fr       */
+/*   Created: 2021/06/08 12:38:57 by lbaela            #+#    #+#             */
+/*   Updated: 2021/06/08 12:39:00 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	translate_nums(char *num, long int n, unsigned int len)
+static void	translate_u_nums(char *num, unsigned long int n, unsigned int len)
 {
-	if (n < -9223372036854775807)
-	{
-		ft_memcpy(num, "9223372036854775808", len);
-		return ;
-	}
 	if (n == 0)
 		num[--len] = '0';
 	while (n)
@@ -28,28 +23,21 @@ static void	translate_nums(char *num, long int n, unsigned int len)
 	}
 }
 
-char	*ft_itoa_d(long int n, char	*sign)
+char	*ft_itoa_u(unsigned long int n)
 {
 	char				*num;
 	unsigned int		len;
 	unsigned long int	mod;
-	long int			sn;
 
 	mod = 10;
 	len = 1;
-	sn = n;
-	if (sn < 0)
-	{
-		*sign = '-';
-		sn = -1 * sn;
-	}
-	while (sn % mod != (unsigned long int) sn)
+	while (n % mod != n && len < 20)
 	{
 		mod *= 10;
 		len++;
 	}
 	num = ft_calloc(len + 1, sizeof(char));
 	if (num)
-		translate_nums(num, sn, len);
+		translate_u_nums(num, n, len);
 	return (num);
 }

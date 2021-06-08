@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/07 18:31:01 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/08 14:29:34 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int		ft_printf(const char *str, ...);
 int		print_control_string(char *s, va_list ap, int *count);
 int		print_arg(char *fspec, va_list ap, int *count);
 void	get_arg(t_args *arg, va_list ap, char *fspec);
+void	check_for_mods(t_args *arg, char **fspec);
+void	check_for_flags(t_args *arg, char **fspec);
 char	*convert_arg_c_prc(t_args *arg, va_list ap, int *count);
 char	*convert_arg_s(t_args *arg, va_list ap, int *count);
 char	*convert_arg_d_u_i(t_args *arg, va_list ap, int *count);
@@ -50,7 +52,7 @@ char	*convert_arg_p(char *fspec, va_list ap);
 char	*trim_and_align_str(char *str, t_args *arg, int *count);
 char	*trim_and_align_digit(char *str, t_args *arg, int *count);
 char	*ft_itoa_d(long int n, char *sign);
-char	*ft_itoa_x(long int n, char *sign, char format);
+char	*ft_itoa_x(long int n, t_args *arg);
 char	*ft_itoa_u(unsigned long int n);
 //char	*ft_itoa_p(long long int n, char *sign, char format);
 

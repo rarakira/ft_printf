@@ -2,11 +2,13 @@ NAME		= test
 
 SRCS		= main.c
 
+SRC2		= main-2.c
+
 LIB			= ftprintf
 
 LIBDIR		= ../ft_printf
 
-CC			= gcc
+CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -I../ft_printf/includes
 
@@ -20,6 +22,9 @@ lib:
 #$ {LIBDIR}/libftprintf.a
 ${NAME}:
 		${CC} ${CFLAGS} ${SRCS} -L${LIBDIR} -l${LIB} -o ${NAME}
+
+2 :
+		${CC} ${CFLAGS} ${SRC2} -L${LIBDIR} -l${LIB} -o ${NAME}
 
 clean:
 		${RM} ${OBJS}

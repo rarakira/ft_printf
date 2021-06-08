@@ -24,11 +24,7 @@ static char	*set_new_line(t_args *arg)
 		res = (char *)ft_calloc(arg->width + 1, sizeof(char));
 		ft_memset(res, arg->padding, arg->width);
 		if (arg->len < arg->prec && !arg->a_left)
-		{
 			ft_memset(res + arg->width - arg->prec, '0', arg->prec);
-			if (arg->flag_alt)
-				res[arg->width - arg->prec + 1] = arg->format;
-		}
 		if (arg->len < arg->prec && arg->a_left)
 			ft_memset(res, '0', arg->prec);
 	}
