@@ -571,6 +571,18 @@ void test_08(char *name)
 	n2 = ft_printf("ft:\t|%.*i| ||%.*i||\n", -6, 3, -6, -3);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
+
+	printf("10.1: %s -> -1, 42, 1\n", "% -010.3d % -010.*d");
+	n1 = printf("pf:\t|% -10.3d| ||% -10.*d||\n", -1, 42, 1);
+	n2 = ft_printf("ft:\t|% -010.3d| ||% -010.*d||\n", -1, 42, 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("10.2: %s -> -1, 42, 1\n", "%+-10.3d %+-10.*d");
+	n1 = printf("pf:\t|%+-10.3d| ||%+-10.*d||\n", -1, 42, 1);
+	n2 = ft_printf("ft:\t|%+-10.3d| ||%+-10.*d||\n", -1, 42, 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 }
 
 void test_09(char *name)
@@ -719,9 +731,84 @@ void test_15(char *name)
 	//int	n = 0;
 	//int	m = -123;
 
-	printf("1: %s\n", "%% %10.42%");
-	n1 = printf("pf:\t|%%| ||%10.42%||\n");
-	n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	printf("1: %s -> 100, 100000000000, 100000000000000000\n", "%d %ld %ld");
+	n1 = printf("pf:\t|%d| ||%ld|| |%ld|\n", 100, 100000000000, 100000000000000000);
+	n2 = ft_printf("ft:\t|%d| ||%ld|| |%ld|\n", 100, 100000000000, 100000000000000000);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	//long int a = (long int) (INT_MAX + 1);
+	//long int b = (long int) (INT_MIN - 1);
+	printf("1: %s -> INT_MAX + 1, INT_MIN - 1\n", "%d %d");
+	n1 = printf("pf:\t|%d| ||%d||\n", INT_MAX + 1, INT_MIN - 1);
+	n2 = ft_printf("ft:\t|%d| ||%d||\n", INT_MAX + 1, INT_MIN - 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("1: %s -> LONG_MAX, LONG_MIN\n", "%ld %ld");
+	n1 = printf("pf:\t|%ld| ||%ld||\n", LONG_MAX, LONG_MIN);
+	n2 = ft_printf("ft:\t|%ld| ||%ld||\n", LONG_MAX, LONG_MIN);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("1: %s -> LONG_MAX + 1, LONG_MIN - 1\n", "%ld %ld");
+	n1 = printf("pf:\t|%ld| ||%ld||\n", LONG_MAX + 1, LONG_MIN - 1);
+	n2 = ft_printf("ft:\t|%ld| ||%ld||\n", LONG_MAX + 1, LONG_MIN - 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	long int l_b = LONG_MIN;
+	printf("LONG_MAX = %ld, LONG_MIN = %ld\n", LONG_MAX, LONG_MIN);
+	printf("int = %zu\tshort int = %zu\tlong long int = %zu\n", sizeof(int), sizeof(long int), sizeof(long long int));
+	printf("int = %zu\tshort int = %zu\tunsigned long int = %zu\n", sizeof(int), sizeof(short int), sizeof(unsigned long int));
+	printf("l_b = %ld, so(l_b) = %zu, so(LONG_MIN) = %zu\n", l_b, sizeof(l_b), sizeof(LONG_MIN));
+	next();
+
+	short s_a = SHRT_MAX;
+	short s_b = SHRT_MIN;
+
+	printf("1: %s -> SHRT_MAX, SHRT_MIN\n", "%hd %hd");
+	n1 = printf("pf:\t|%hd| ||%hd||\n", s_a, s_b);
+	n2 = ft_printf("ft:\t|%hd| ||%hd||\n", s_a, s_b);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("sizeof: s_a = %zu\tSHRT_MAX = %zu\n\n", sizeof(s_a), sizeof(SHRT_MAX));
+
+	s_a += 1;
+	s_b -= 1;
+
+	printf("1: %s -> SHRT_MAX + 1, SHRT_MIN - 1\n", "%d %d");
+	n1 = printf("pf:\t|%d| ||%d||\n", s_a, s_b);
+	n2 = ft_printf("ft:\t|%d| ||%d||\n", s_a, s_b);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	char sn_a = CHAR_MAX;
+	char sn_b = CHAR_MIN;
+
+	printf("1: %s -> CHAR_MAX, CHAR_MIN\n", "%hhd %hhd");
+	n1 = printf("pf:\t|%hhd| ||%hhd||\n", sn_a, sn_b);
+	n2 = ft_printf("ft:\t|%hhd| ||%hhd||\n", sn_a, sn_b);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("sizeof: sn_a = %zu\tCHAR_MAX = %zu\n\n", sizeof(sn_a), sizeof(CHAR_MAX));
+
+	sn_a += 1;
+	sn_b -= 1;
+
+	printf("1: %s -> CHAR_MAX + 1, CHAR_MIN - 1\n", "%hhd %hhd");
+	n1 = printf("pf:\t|%hhd| ||%hhd||\n", sn_a, sn_b);
+	n2 = ft_printf("ft:\t|%hhd| ||%hhd||\n", sn_a, sn_b);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	unsigned long u_l = ULONG_MAX;
+
+	printf("1: %s -> ULONG_MAX, ULONG_MAX + 1\n", "%lu %lu");
+	n1 = printf("pf:\t|%lu| ||%lu||\n", u_l, u_l + 1);
+	n2 = ft_printf("ft:\t|%lu| ||%lu||\n", u_l, u_l + 1);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 }
@@ -735,11 +822,30 @@ void test_16(char *name)
 	//int	n = 0;
 	//int	m = -123;
 
-	printf("1: %s\n", "%% %10.42%");
-	n1 = printf("pf:\t|%%| ||%10.42%||\n");
-	n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	printf("1: %s -> 0\n", "%#-03.x");
+	n1 = printf("pf:\t|%#-3.x|\n", 0);
+	n2 = ft_printf("ft:\t|%#-03.x|\n", 0);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
+
+	printf("1: %s -> 1\n", "%#-03.x");
+	n1 = printf("pf:\t|%#-3.x|\n", 1);
+	n2 = ft_printf("ft:\t|%#-03.x|\n", 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("1: %s -> 1\n", "%#x");
+	n1 = printf("pf:\t|%#x|\n", 1);
+	n2 = ft_printf("ft:\t|%#x|\n", 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("1: %s -> 0xff11ff11ff88\n", "%ld");
+	n1 = printf("pf:\t|%ld|\n", 0xff11ff11ff88);
+	n2 = ft_printf("ft:\t|%ld|\n", 0xff11ff11ff88);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
 }
 
 void test_17(char *name)
@@ -819,16 +925,18 @@ void test_17(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next(); */
 
-	//printf("%zu\n", sizeof(int *));
-	//printf("%zu\n", sizeof(long int *));
-	//printf("%zu\n", sizeof(long long int *));
+	long int a_l_min = LONG_MIN;
+	long int a_l_max = LONG_MAX;
 
-	/*
 	printf("Test 7: %s -> LONG_MIN, LONG_MAX\n", "%p %p");
-	n1 = printf("pf:\t|%p| ||%p||\n", &LONG_MIN, &LONG_MAX);
-	n2 = ft_printf("ft:\t|%p| ||%p||\n", &LONG_MIN, &LONG_MAX);
+	n1 = printf("pf:\t|%p| ||%p||\n", &a_l_min, &a_l_max);
+	n2 = ft_printf("ft:\t|%p| ||%p||\n", &a_l_min, &a_l_max);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
-	next(); */
+	next();
+
+	printf("%zu\n", sizeof(int *));
+	printf("%zu\n", sizeof(long int *));
+	printf("%zu\n", sizeof(long long int *));
 
 	printf("LONG_MIN = %ld,\n\n", ULONG_MAX, LONG_MIN);
 	printf("Test 7: %s -> LONG_MIN\n", "%lx");
@@ -857,7 +965,36 @@ void test_17(char *name)
 	n2 = ft_printf("ft:\t|%x| ||%x||\n", INT_MIN, INT_MAX);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
+
+	float f = 214.52;   
+    n1 = printf("f = %f\t",f); // 214.520004
+	printf("= %d symbols\n", n1);
+	n1 = printf("e = %e\t",f); // 2.145200e+02
+	printf("= %d symbols\n", n1);
+	n1 = printf("g = %g\t",f); // 214.52
+	printf("= %d symbols\n", n1);
 	
+}
+
+void test_18(char *name)
+{
+	int n1, n2;
+
+	print_name(name);
+
+	printf("1: %s -> 43\n", "%#5x");
+	n1 = printf("pf:\t|%#5x|\n", 43);
+	n2 = ft_printf("ft:\t|%#5x|\n", 43);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("1: %s -> 43\n", "%#5X");
+	n1 = printf("pf:\t|%#5X|\n", 43);
+	n2 = ft_printf("ft:\t|%#5X|\n", 43);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+
 }
 
 int	main(void)
@@ -872,7 +1009,7 @@ int	main(void)
 	//test_06("06, wtf is S?");
 	//test_07("07, d");
 	//test_08("08, more d");
-	//test_09("09, u");
+	test_09("09, u");
 	//test_10("10, %%");
 	//test_11("11, p");
 	test_12("12, x & X");
@@ -880,7 +1017,8 @@ int	main(void)
 	//test_14("14, n f g e");
 	//test_15("15, l ll h hh");
 	//test_16("16, #");
-	//test_17("17, p");
+	test_17("17, p");
+	test_18("Troubleshooting");
 	
 	ft_printf("\n* * * ************* TEST COMPLETED ************ * * *\n\n");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 18:00:45 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/06 18:01:32 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/07 18:29:31 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,23 @@ static int	inset(char ch, char const *set)
 	return (0);
 }
 
+void	check_for_mods(t_args *arg, char **fspec)
+{
+	int	len;
+
+	len = (int) ft_strlen(*fspec);
+	if (len > 1)
+		len -= 2;
+	while ((*(*fspec + len) == 'l' || *(*fspec + len) == 'h') && len >= 0)
+	{
+		if (*(*fspec + len) == 'l')
+			arg->l += 1;
+		else if (*(*fspec + len) == 'h')
+			arg->h += 1;
+		len--;
+	}
+}
+
 void	check_for_flags(t_args *arg, char **fspec)
 {
 	while (inset(**fspec, "-+0 #"))
@@ -81,12 +98,15 @@ void	init_arg(t_args *arg)
 	arg->prec_flag = 0;
 	arg->prec_neg = 0;
 	arg->str = NULL;
+	arg->l = 0;
+	arg->h = 0;
 }
 
 void	get_arg(t_args *arg, va_list ap, char *fspec)
 {
 	init_arg(arg);
 	arg->format = fspec[ft_strlen(fspec) - 1];
+	check_for_mods(arg, &fspec);
 	check_for_flags(arg, &fspec);
 	if (*fspec == '*' || ft_isdigit(*fspec))
 		arg->width = get_size_arg(&fspec, ap, &(arg->a_left));

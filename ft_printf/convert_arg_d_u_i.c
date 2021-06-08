@@ -5,9 +5,19 @@ char	*convert_arg_d_u_i(t_args *arg, va_list ap, int *count)
 	char	*res;
 
 	if (arg->format == 'd' || arg->format == 'i')
-		res = ft_itoa_d(va_arg(ap, int), &arg->sign);
+	{
+		if (arg->l != 0)
+			res = ft_itoa_d(va_arg(ap, long int), &arg->sign);
+		else
+			res = ft_itoa_d(va_arg(ap, int), &arg->sign);
+	}
 	if (arg->format == 'u')
-		res = ft_itoa_d((long int)va_arg(ap, unsigned int), &arg->sign);
+	{
+		if (arg->l != 0)
+			res = ft_itoa_u(va_arg(ap, unsigned long int));
+		else
+			res = ft_itoa_d((long int) va_arg(ap, unsigned int), &arg->sign);
+	}
 	if (res == NULL)
 	{
 		*count = -1;

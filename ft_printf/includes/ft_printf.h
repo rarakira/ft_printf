@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/06 18:01:29 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/07 18:31:01 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_args
 	int		prec_flag;
 	int		prec_neg;
 	char	*str;
+	int		l;
+	int		h;
 }				t_args;
 
 int		ft_printf(const char *str, ...);
@@ -49,6 +51,7 @@ char	*trim_and_align_str(char *str, t_args *arg, int *count);
 char	*trim_and_align_digit(char *str, t_args *arg, int *count);
 char	*ft_itoa_d(long int n, char *sign);
 char	*ft_itoa_x(long int n, char *sign, char format);
+char	*ft_itoa_u(unsigned long int n);
 //char	*ft_itoa_p(long long int n, char *sign, char format);
 
 #endif
