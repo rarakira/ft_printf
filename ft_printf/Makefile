@@ -22,7 +22,11 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(MAKE) -C $(LIBFT)
+<<<<<<< HEAD
 	cp ./libft/libft.a ./$(NAME)
+=======
+	@cp ./libft/libft.a ./$(NAME)
+>>>>>>> 7f8b0727e48ecc3207fe423277b43b6505b6e761
 	ar rcs $(NAME) $?
 
 %.o : %.c
@@ -40,7 +44,11 @@ fclean : clean
 
 re : fclean all
 
+<<<<<<< HEAD
 norme :
 	norminette $(CFILES) includes/*.h libft/*.c
 
 .PHONY : all clean fclean re bonus norme
+=======
+.PHONY : all clean fclean re bonus
+>>>>>>> 7f8b0727e48ecc3207fe423277b43b6505b6e761
