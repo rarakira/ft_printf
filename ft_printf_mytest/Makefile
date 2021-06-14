@@ -1,6 +1,8 @@
 NAME		= test
 
-SRCS		= main.c
+SRCS		= main.c	${wildcard ${LIBDIR}/*.c}
+
+OBJS		= ${SRCS:.c=.o}
 
 SRC2		= main-2.c
 
@@ -8,38 +10,51 @@ LIB			= ftprintf
 
 LIBDIR		= ../ft_printf
 
-CC			= cc
+CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror -I../ft_printf/includes
+CFLAGS		= -Wall -Wextra -Werror
+
+INCLUDES	= -I../ft_printf/includes
 
 RM			= rm -f
 
-all:	lib ${NAME}
+all:	${NAME}
 
 lib:
-		cd ${LIBDIR} && make
+		${MAKE} -C ${LIBDIR}
 
-#$ {LIBDIR}/libftprintf.a
-${NAME}:
-		${CC} ${CFLAGS} ${SRCS} -L${LIBDIR} -l${LIB} -o ${NAME}
+${NAME}: lib ${OBJS}	
+		${CC} ${CFLAGS} ${OBJS} -L${LIBDIR} -l${LIB} -o ${NAME}
+
+%.o : %.c
+		${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@
 
 2 :
-		${CC} ${CFLAGS} ${SRC2} -L${LIBDIR} -l${LIB} -o ${NAME}
+		${CC} ${CFLAGS} ${INCLUDES} ${SRC2} -L${LIBDIR} -l${LIB} -o ${NAME}
+
+norm_a:
+	norminette ${LIBDIR}/libft ${LIBDIR}/*.c ${LIBDIR}/includes
+
+norm:
+	norminette ${LIBDIR}/*.c ${LIBDIR}/includes
 
 clean:
 		${RM} ${OBJS}
-		cd ${LIBDIR} && make clean
+		${MAKE} clean -C ${LIBDIR}
 
 fclean:	clean
 		${RM} ${NAME}
-		cd ${LIBDIR} && make fclean
+		${MAKE} fclean -C ${LIBDIR}
 
-libft_re:
-		cd ${LIBDIR} && make re
+lib_re:
+		${MAKE} re -C ${LIBDIR}
 
 re:		fclean all
 
 play: all
 		@./test
 
-.PHONY: all clean fclean re test play
+leaks: all
+		@valgrind --leak-check=full --show-leak-kinds=all ./test
+
+.PHONY: all clean fclean re test play leaks norm

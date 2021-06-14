@@ -6,13 +6,13 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 18:00:45 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 17:35:10 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/14 23:59:09 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	get_size_arg(char **fspec, va_list ap, int *sign)
+static size_t	get_size_arg(char **fspec, va_list ap, int *sign)
 {
 	long	res;
 
@@ -65,17 +65,14 @@ void	get_arg(t_args *arg, va_list ap, char *fspec)
 		fspec++;
 		arg->prec = get_size_arg(&fspec, ap, &(arg->prec_neg));
 	}
-	if (arg->prec_neg)
+	if (arg->prec_neg || arg->format == 'p')
 	{
 		arg->prec_flag = 0;
 		arg->prec = 0;
+		if (arg->format == 'p')
+			arg->flag_alt = 1;
 	}
-	if ((arg->prec_flag && arg->width > arg->prec) || arg->a_left)
+	if (((arg->prec_flag && arg->width > arg->prec) || arg->a_left)
+		&& arg->format != 'f')
 		arg->padding = ' ';
-	if (arg->format == 'p')
-	{
-		arg->flag_alt = 1;
-		arg->prec_flag = 0;
-		arg->prec = 0;
-	}
 }

@@ -967,7 +967,7 @@ void test_17(char *name)
 	next();
 
 	float f = 214.52;   
-    n1 = printf("f = %f\t",f); // 214.520004
+	n1 = printf("f = %f\t",f); // 214.520004
 	printf("= %d symbols\n", n1);
 	n1 = printf("e = %e\t",f); // 2.145200e+02
 	printf("= %d symbols\n", n1);
@@ -1077,6 +1077,804 @@ void test_18(char *name)
 	
 }
 
+void test_19(char *name)
+{
+	int n1, n2;
+
+	print_name(name);
+
+	//int	n = 0;
+	//int	m = -123;
+	wchar_t ch1 = u'ƀ';
+	//wchar_t ch2 = u'ɏ';
+	//wchar_t ch3 = u'ɐ';
+	//wchar_t ch4 = u'ʯ';
+	//wchar_t ch5 = u'ʰ';
+	//wchar_t ch6 = u'˿';
+	//wchar_t ch7 = u'ୟ';
+	//wchar_t ch8 = u'௫';
+	wchar_t ch9 = u'࿚';
+
+	//printf("\n\nchar = %c\n\n", ch1);
+	printf("1: %s -> ƀ\n", "%lc");
+	n1 = printf("pf:\t|%lc|\n", ch1);
+	n2 = ft_printf("ft:\t|%lc|\n", ch1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("2: %s -> ࿚\n", "%lc");
+	n1 = printf("pf:\t|%lc|\n", ch9);
+	n2 = ft_printf("ft:\t|%lc|\n", ch9);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("wtf: %s -> wtf\n", "%lc");
+	n1 = printf("pf:\tƀƀƀ\n");
+	n2 = ft_printf("ft:\tƀƀƀ\n");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+
+}
+
+void test_20(char *name)
+{
+	int n1;
+	//int n2;
+
+	print_name(name);
+
+	int	n;
+	double	d = 0.000999;
+	float	f = 0.000999;
+/*
+	printf("1: %s\n", "%n %ln %lln %hn %hhn");
+	n1 = printf("pf:\t|%n| ||%ln|| |%lln| ||%hn|| |%hhn|\n", n, n, n, n, n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	*/
+
+	n = 555555;
+	printf("1: %s\n", "%f %g %e %d %n %d -> 0.000999");
+	n1 = printf("pf:\t|%f| ||%g|| |%e| n=|%d| ||%n|| n=|%d|\n", d, d, d, n, &n, n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("2: %s\n", "%.5f %.5g %.5e %.5n -> 0.000999");
+	n1 = printf("pf:\t|%.5f| ||%.5g|| |%.5e| ||%n||\n", d, d, d, &n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s\n", "%10.5f %10.5g %10.5e %10.5n -> 0.000999");
+	n1 = printf("pf:\t|%10.5f| ||%10.5g|| |%10.5e| ||%n||\n", d, d, d, &n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("4: %s\n", "%3.7f %3.7g %3.7e %3.7n -> 0.000999");
+	n1 = printf("pf:\t|%3.7f| ||%3.7g|| |%3.7e| ||%n||\n", d, d, d, &n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("5: %s\n", "%0+3.7f %0+3.7g %0+3.7e %0+3.7n -> 0.000999");
+	n1 = printf("pf:\t|%0+3.7f| ||%0+3.7g|| |%0+3.7e| ||%n||\n", d, d, d, &n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6 - doubles: %s\n", "%-10.2f %-10.2g %-10.2e %-10.2n -> 0.000999");
+	n1 = printf("pf:\t|%-10.2f| ||%-10.2g|| |%-10.2e| ||%n||\n", d, d, d, &n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6 - floats: %s -> %f\n", "%-10.2f %-10.2g %-10.2e %-10.2n", f);
+	n1 = printf("pf:\t|%-10.2f| ||%-10.2g|| |%-10.2e| ||%n||\n", f, f, f, &n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = 125.521;
+
+	printf("6 - floats: %s -> %f\n", "%-10.2f %-10.2g %-10.2e %-10.2n", f);
+	n1 = printf("pf:\t|%-10.2f| ||%-10.2g|| |%-10.2e| ||%n||\n", f, f, f, &n);
+	//n2 = ft_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	d = 125.521;
+	printf("6 - doubles: %s -> %f\n", "%-10.2f %-10.2g %-10.2e %-10.2n", d);
+	n1 = printf("pf:\t|%-10.2f| ||%-10.2g|| |%-10.2e| ||%n||\n", d, d, d, &n);
+	//n2 = dt_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6 - doubles: %s -> %f\n", "%10.2f %10.2g %10.2e %10.2n", d);
+	n1 = printf("pf:\t|%10.2f| ||%10.2g|| |%10.2e| ||%n||\n", d, d, d, &n);
+	//n2 = dt_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6 - doubles: %s -> %f\n", "%10.1f %10.1g %10.1e %10.1n", d);
+	n1 = printf("pf:\t|%10.1f| ||%10.1g|| |%10.1e| ||%n||\n", d, d, d, &n);
+	//n2 = dt_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6 - doubles: %s -> %f\n", "%10.15f %10.15g %10.15e %10.15n", d);
+	n1 = printf("pf:\t|%10.15f| ||%10.15g|| |%10.15e| ||%n||\n", d, d, d, &n);
+	//n2 = dt_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6# - doubles: %s -> %f\n", "%#10.15f %#10.15g %#10.15e %#10.15n", d);
+	n1 = printf("pf:\t|%#10.15f| ||%#10.15g|| |%#10.15e| ||%n||\n", d, d, d, &n);
+	//n2 = dt_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("SIZEOF:\n");
+	printf("Float = %zu, double = %zu\n", sizeof(float), sizeof(double));
+	next();
+
+	printf("7 - doubles: %s -> %f\n", "%10.0f %10.0g %10.0e %10.0n", d);
+	n1 = printf("pf:\t|%10.0f| ||%10.0g|| |%10.0e| ||%n||\n", d, d, d, &n);
+	//n2 = dt_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("7# - doubles: %s -> %f\n", "%#10.f %#10.g %#10.e %#10.n", d);
+	n1 = printf("pf:\t|%#10.f| ||%#10.g|| |%#10.e| ||%n||\n", d, d, d, &n);
+	//n2 = dt_printf("ft:\t|%%| ||%10.42%||\n");
+	//printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+}
+
+void test_21(char *name)
+{
+	int n1;
+	int n2;
+
+	print_name(name);
+
+	double	d = 0.000999;
+	float	f = 0.000999;
+
+	printf("SIZEOF:\n");
+	printf("Float = %zu, double = %zu\n", sizeof(float), sizeof(double));
+	printf("float f = %f, double d = %f\n", f, d);
+	next();
+
+	printf("1: %s -> %f %f\n", "%f %f", f, d);
+	n1 = printf("pf:\t|%f| ||%f||\n", f, d);
+	n2 = ft_printf("ft:\t|%f| ||%f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("2: %s -> %f %f\n", "%10f %10f", f, d);
+	n1 = printf("pf:\t|%10f| ||%10f||\n", f, d);
+	n2 = ft_printf("ft:\t|%10f| ||%10f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s -> %f %f\n", "%.10f %.10f", f, d);
+	n1 = printf("pf:\t|%.10f| ||%.10f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.10f| ||%.10f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s -> %f %f\n", "%.5f %.5f", f, d);
+	n1 = printf("pf:\t|%.5f| ||%.5f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.5f| ||%.5f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+
+	printf("3: %s -> %f %f\n", "%.1f %.1f", f, d);
+	n1 = printf("pf:\t|%.1f| ||%.1f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.1f| ||%.1f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s -> %f %f\n", "%.2f %.2f", f, d);
+	n1 = printf("pf:\t|%.2f| ||%.2f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.2f| ||%.2f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("4: %s -> %f %f\n", "%10.5f %10.5f", f, d);
+	n1 = printf("pf:\t|%10.5f| ||%10.5f||\n", f, d);
+	n2 = ft_printf("ft:\t|%10.5f| ||%10.5f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("5: %s -> %f %f\n", "%3.7f %3.7f", f, d);
+	n1 = printf("pf:\t|%3.7f| ||%3.7f||\n", f, d);
+	n2 = ft_printf("ft:\t|%3.7f| ||%3.7f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("5: %s -> %f %f\n", "%+3.7f %+3.7f", f, d);
+	n1 = printf("pf:\t|%+3.7f| ||%+3.7f||\n", f, d);
+	n2 = ft_printf("ft:\t|%+3.7f| ||%+3.7f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6: %s -> %f %f\n", "%-10.2f %-10.2f", f, d);
+	n1 = printf("pf:\t|%-10.2f| ||%-10.2f||\n", f, d);
+	n2 = ft_printf("ft:\t|%-10.2f| ||%-10.2f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6: %s -> %f %f\n", "%10.2f %10.2f", f, d);
+	n1 = printf("pf:\t|%10.2f| ||%10.2f||\n", f, d);
+	n2 = ft_printf("ft:\t|%10.2f| ||%10.2f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = 125.521;
+	d = 125.521;
+
+	printf("7: %s -> %f %f\n", "%-10.2f %-10.2f", f, d);
+	n1 = printf("pf:\t|%-10.2f| ||%-10.2f||\n", f, d);
+	n2 = ft_printf("ft:\t|%-10.2f| ||%-10.2f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("7: %s -> %f %f\n", "%10.2f %10.2f", f, d);
+	n1 = printf("pf:\t|%10.2f| ||%10.2f||\n", f, d);
+	n2 = ft_printf("ft:\t|%10.2f| ||%10.2f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("8: %s -> %f %f\n", "%10.15f %10.15f", f, d);
+	n1 = printf("pf:\t|%10.15f| ||%10.15f||\n", f, d);
+	n2 = ft_printf("ft:\t|%10.15f| ||%10.15f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("8: %s -> %f %f\n", "%#10.15f %#10.15f", f, d);
+	n1 = printf("pf:\t|%#10.15f| ||%#10.15f||\n", f, d);
+	n2 = ft_printf("ft:\t|%#10.15f| ||%#10.15f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("8: %s -> %f %f\n", "%10.f %10.f", f, d);
+	n1 = printf("pf:\t|%10.f| ||%10.f||\n", f, d);
+	n2 = ft_printf("ft:\t|%10.f| ||%10.f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("8: %s -> %f %f\n", "%#10.f %#10.f", f, d);
+	n1 = printf("pf:\t|%#10.f| ||%#10.f||\n", f, d);
+	n2 = ft_printf("ft:\t|%#10.f| ||%#10.f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = 1;
+	d = 1;
+
+	printf("9: %s -> %f %f\n", "%-5.1f %-5.1f", f, d);
+	n1 = printf("pf:\t|%-5.1f| ||%-5.1f||\n", f, d);
+	n2 = ft_printf("ft:\t|%-5.1f| ||%-5.1f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9: %s -> %f %f\n", "%5.1f %5.1f", f, d);
+	n1 = printf("pf:\t|%5.1f| ||%5.1f||\n", f, d);
+	n2 = ft_printf("ft:\t|%5.1f| ||%5.1f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9: %s -> %f %f\n", "%-10f %-10f", f, d);
+	n1 = printf("pf:\t|%-10f| ||%-10f||\n", f, d);
+	n2 = ft_printf("ft:\t|%-10f| ||%-10f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9: %s -> %f %f\n", "%10f %10f", f, d);
+	n1 = printf("pf:\t|%10f| ||%10f||\n", f, d);
+	n2 = ft_printf("ft:\t|%10f| ||%10f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("10: %s -> %f %f\n", "%-.10f %-.10f", f, d);
+	n1 = printf("pf:\t|%-.10f| ||%-.10f||\n", f, d);
+	n2 = ft_printf("ft:\t|%-.10f| ||%-.10f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("10: %s -> %f %f\n", "%.10f %.10f", f, d);
+	n1 = printf("pf:\t|%.10f| ||%.10f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.10f| ||%.10f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = 5.55555;
+	d = 5.55555;
+
+	printf("11: %s -> %f %f\n", "%.f %.f", f, d);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("11: %s -> %f %f\n", "%.1f %.1f", f, d);
+	n1 = printf("pf:\t|%.1f| ||%.1f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.1f| ||%.1f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("11: %s -> %f %f\n", "%.3f %.3f", f, d);
+	n1 = printf("pf:\t|%.3f| ||%.3f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.3f| ||%.3f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = -5.55555;
+	d = -5.55555;
+
+	printf("12: %s -> %f %f\n", "%f %f", f, d);
+	n1 = printf("pf:\t|%f| ||%f||\n", f, d);
+	n2 = ft_printf("ft:\t|%f| ||%f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("12: %s -> %f %f\n", "%.f %.f", f, d);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("12: %s -> %f %f\n", "%.1f %.1f", f, d);
+	n1 = printf("pf:\t|%.1f| ||%.1f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.1f| ||%.1f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("12: %s -> %f %f\n", "%.3f %.3f", f, d);
+	n1 = printf("pf:\t|%.3f| ||%.3f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.3f| ||%.3f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = 999.55555;
+	d = 999.55555;
+
+	printf("13: %s -> %f %f\n", "%f %f", f, d);
+	n1 = printf("pf:\t|%f| ||%f||\n", f, d);
+	n2 = ft_printf("ft:\t|%f| ||%f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("13: %s -> %f %f\n", "%.f %.f", f, d);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = 999.45555;
+	d = 999.45555;
+
+	printf("14: %s -> %f %f\n", "%.1f %.1f", f, d);
+	n1 = printf("pf:\t|%.1f| ||%.1f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.1f| ||%.1f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("14: %s -> %f %f\n", "%.f %.f", f, d);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+}
+
+void test_22(char *name)
+{
+	int n1;
+	int n2;
+
+	float	f = 0.0;
+	double	d = 0.0;
+
+	print_name(name);
+
+	printf("1: %s -> %f %f\n", "%7.f %8.1f %7.f %8.1f", f, d);
+	n1 = printf("pf:\t|%7.f| ||%8.1f|| |%7.f| ||%8.1f||\n", f, d, f, d);
+	n2 = ft_printf("ft:\t|%7.f| ||%8.1f|| |%7.f| ||%8.1f||\n", f, d, f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("2: %s -> %f %f %f %f\n", "%07.f %08.1f %08.1f %09.2f", f, d, -1.0, 42.0);
+	n1 = printf("pf:\t|%07.f| ||%08.1f|| |%08.1f| ||%09.2f||\n", f, d, -1.0, 42.0);
+	n2 = ft_printf("ft:\t|%07.f| ||%08.1f|| |%08.1f| ||%09.2f||\n", f, d, -1.0, 42.0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s -> %f %f %f %f\n", "%%-02.f %-02.1f %-02.1f %-02.2f", f, d, -1.0, 42.0);
+	n1 = printf("pf:\t|%-2.f| ||%-2.1f|| |%-2.1f| ||%-2.2f||\n", f, d, -1.0, 42.0);
+	n2 = ft_printf("ft:\t|%-02.f| ||%-02.1f|| |%-02.1f| ||%-02.2f||\n", f, d, -1.0, 42.0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("3: %s -> %f %f %f %f\n", "%%-010.f %-010.1f %-010.1f %-02.2f", f, d, -1.0, 42.0);
+	n1 = printf("pf:\t|%-10.f| ||%-10.1f|| |%-10.1f| ||%-2.2f||\n", f, d, -1.0, 42.0);
+	n2 = ft_printf("ft:\t|%-010.f| ||%-010.1f|| |%-010.1f| ||%-02.2f||\n", f, d, -1.0, 42.0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("4: %s -> %f %f\n", "%f (LONG_MIN * 1.0) %f LONG_MAX * 1.0", LONG_MIN * 1.0, LONG_MAX * 1.0);
+	n1 = printf("pf:\t|%f| ||%f||\n", LONG_MIN * 1.0, LONG_MAX * 1.0);
+	n2 = ft_printf("ft:\t|%f| ||%f||\n", LONG_MIN * 1.0, LONG_MAX * 1.0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("5: %s -> %f\n", "%10f (1.0 / 0)", 1.0 / 0);
+	n1 = printf("pf:\t|%10f|\n", 1.0 / 0);
+	n2 = ft_printf("ft:\t|%10f|\n", 1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6: %s -> %f\n", "%10.10f (1.0 / 0)", 1.0 / 0);
+	n1 = printf("pf:\t|%10.10f|\n", 1.0 / 0);
+	n2 = ft_printf("ft:\t|%10.10f|\n", 1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("7: %s -> %f\n", "%0.20f (1.0 / 0)", 1.0 / 0);
+	n1 = printf("pf:\t|%0.20f|\n", 1.0 / 0);
+	n2 = ft_printf("ft:\t|%0.20f|\n", 1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("8: %s -> %f\n", "%020.10f (1.0 / 0)", 1.0 / 0);
+	n1 = printf("pf:\t|%020.10f|\n", 1.0 / 0);
+	n2 = ft_printf("ft:\t|%020.10f|\n", 1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9: %s -> %f\n", "%-020.20f (1.0 / 0)", 1.0 / 0);
+	n1 = printf("pf:\t|%-20.20f|\n", 1.0 / 0);
+	n2 = ft_printf("ft:\t|%-020.20f|\n", 1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("10: %s -> %f\n", "%20.f (1.0 / 0)", 1.0 / 0);
+	n1 = printf("pf:\t|%20.f|\n", 1.0 / 0);
+	n2 = ft_printf("ft:\t|%20.f|\n", 1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("5.2: %s -> %f\n", "%10f (-1.0 / 0)", -1.0 / 0);
+	n1 = printf("pf:\t|%10f|\n", -1.0 / 0);
+	n2 = ft_printf("ft:\t|%10f|\n", -1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6.2: %s -> %f\n", "%10.10f (-1.0 / 0)", -1.0 / 0);
+	n1 = printf("pf:\t|%10.10f|\n", -1.0 / 0);
+	n2 = ft_printf("ft:\t|%10.10f|\n", -1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("7.2: %s -> %f\n", "%0.20f (-1.0 / 0)", -1.0 / 0);
+	n1 = printf("pf:\t|%0.20f|\n", -1.0 / 0);
+	n2 = ft_printf("ft:\t|%0.20f|\n", -1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("8.2: %s -> %f\n", "%020.10f (-1.0 / 0)", -1.0 / 0);
+	n1 = printf("pf:\t|%020.10f|\n", -1.0 / 0);
+	n2 = ft_printf("ft:\t|%020.10f|\n", -1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9.2: %s -> %f\n", "%-020.20f (-1.0 / 0)", -1.0 / 0);
+	n1 = printf("pf:\t|%-20.20f|\n", -1.0 / 0);
+	n2 = ft_printf("ft:\t|%-020.20f|\n", -1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("10.2: %s -> %f\n", "%20.f (-1.0 / 0)", -1.0 / 0);
+	n1 = printf("pf:\t|%20.f|\n", -1.0 / 0);
+	n2 = ft_printf("ft:\t|%20.f|\n", -1.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("5.3: %s -> %f\n", "%10f (0.0 / 0)", 0.0 / 0);
+	n1 = printf("pf:\t|%10f|\n", 0.0 / 0);
+	n2 = ft_printf("ft:\t|%10f|\n", 0.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("6.3: %s -> %f\n", "%10.10f (0.0 / 0)", 0.0 / 0);
+	n1 = printf("pf:\t|%10.10f|\n", 0.0 / 0);
+	n2 = ft_printf("ft:\t|%10.10f|\n", 0.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("7.3: %s -> %f\n", "%0.20f (0.0 / 0)", 0.0 / 0);
+	n1 = printf("pf:\t|%0.20f|\n", 0.0 / 0);
+	n2 = ft_printf("ft:\t|%0.20f|\n", 0.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("8.3: %s -> %f\n", "%020.10f (0.0 / 0)", 0.0 / 0);
+	n1 = printf("pf:\t|%020.10f|\n", 0.0 / 0);
+	n2 = ft_printf("ft:\t|%020.10f|\n", 0.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("9.3: %s -> %f\n", "%-020.20f (0.0 / 0)", 0.0 / 0);
+	n1 = printf("pf:\t|%-20.20f|\n", 0.0 / 0);
+	n2 = ft_printf("ft:\t|%-020.20f|\n", 0.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("10.3: %s -> %f\n", "%20.f (0.0 / 0)", 0.0 / 0);
+	n1 = printf("pf:\t|%20.f|\n", 0.0 / 0);
+	n2 = ft_printf("ft:\t|%20.f|\n", 0.0 / 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("11: %s -> %f\n", "%.0f %.f", 4.5);
+	n1 = printf("pf:\t|%.0f| ||%.f||\n", 4.5, 4.5);
+	n2 = ft_printf("ft:\t|%.0f| ||%.f||\n", 4.5, 4.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("12: %s -> %f\n", "%.0f %.f", -2.5);
+	n1 = printf("pf:\t|%.0f| ||%.f||\n", -2.5, -2.5);
+	n2 = ft_printf("ft:\t|%.0f| ||%.f||\n", -2.5, -2.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("13: %s -> %f\n", "%.0f %.f", 2.5);
+	n1 = printf("pf:\t|%.0f| ||%.f||\n", 2.5, 2.5);
+	n2 = ft_printf("ft:\t|%.0f| ||%.f||\n", 2.5, 2.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("14: %s -> %f\n", "%#.0f %#.f", 2.5);
+	n1 = printf("pf:\t|%#.0f| ||%#.f||\n", 2.5, 2.5);
+	n2 = ft_printf("ft:\t|%#.0f| ||%#.f||\n", 2.5, 2.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("15: %s -> %f\n", "%.0f %.f", -3.5);
+	n1 = printf("pf:\t|%.0f| ||%.f||\n", -3.5, -3.5);
+	n2 = ft_printf("ft:\t|%.0f| ||%.f||\n", -3.5, -3.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = 999.5;
+	d = 999.5555;
+
+	printf("16: %s -> %f %f\n", "%.f %.f", f, d);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	f = 1.5;
+	d = 1.5555;
+
+	printf("17 ROUNDED (ODD) : %s -> %f %f\n", "%.f %.f", f, d);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", f, d);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17 ROUNDED (EVEN) : %s -> %f %f\n", "%.f %.f", 2.5, 4.5);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 2.5, 4.5);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 2.5, 4.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17: %s -> %f %f\n", "%.f %.f", 0.5, 6.5);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 0.5, 6.5);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 0.5, 6.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("18: %s -> %f %f\n", "%.f %.f", 1.5, 3.5);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 1.5, 3.5);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 1.5, 3.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("18: %s -> %f %f\n", "%.f %.f", 5.5, 7.5);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 5.5, 7.5);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 5.5, 7.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17: %s -> %f %f\n", "%.f %.f", 2.51, 4.501);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 2.51, 4.501);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 2.51, 4.501);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("18: %s -> %f %f\n", "%.f %.f", 5.51, 7.51);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 5.51, 7.51);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 5.51, 7.51);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17: %s -> %f %f\n", "%.1f %.1f", 2.651, 2.65);
+	n1 = printf("pf:\t|%.1f| ||%.1f||\n", 2.651, 2.65);
+	n2 = ft_printf("ft:\t|%.1f| ||%.1f||\n", 2.651, 2.65);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17: %s -> %f %f\n", "%.1f %.1f", 4.551, 4.55);
+	n1 = printf("pf:\t|%.1f| ||%.1f||\n", 4.551, 4.55);
+	n2 = ft_printf("ft:\t|%.1f| ||%.1f||\n", 4.551, 4.55);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17 ROUNDED (EVEN) : %s -> %f %f\n", "%.f %.f", 2.5, 4.5);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 2.5, 4.5);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 2.5, 4.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17: %s -> %f %f\n", "%.f %.f", 0.5, 6.5);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 0.5, 6.5);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 0.5, 6.5);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17: %s -> %f %f\n", "%.f %.f", 0.6, 5.6);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 0.6, 5.6);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 0.6, 5.6);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("17: %s -> %f %f\n", "%.f %.f", 0.51, 6.501);
+	n1 = printf("pf:\t|%.f| ||%.f||\n", 0.51, 6.501);
+	n2 = ft_printf("ft:\t|%.f| ||%.f||\n", 0.51, 6.501);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+}
+
+void test_23(char *name)
+{
+	int n1;
+	int n2;
+
+	float	f = -0.0;
+	double	d = 0.0;
+
+	print_name(name);
+
+	printf("1: %s -> %f %f\n", "%f %f", f, d);
+	n1 = printf("pf:\t|%f| ||%f||\n", f, d);
+	n2 = ft_printf("ft:\t|%f| ||%f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("1: %s -> %f %f %f\n", "%7f %8f %9f", 0.0, -1.0, 1.0);
+	n1 = printf("pf:\t|%7f| ||%8f|| |%9f|\n", 0.0, -1.0, 1.0);
+	n2 = ft_printf("ft:\t|%7f| ||%8f|| |%9f|\n", 0.0, -1.0, 1.0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	float n,p,z;
+
+	n = -0.0;
+	p = +0.0;
+	z = 0.0;
+
+	if( z==z )
+		printf("%.3f is equal to zero\n",z);
+	if( z==n )
+		printf("%.3f is equal to negative zero\n",z);
+	if( z==p )
+		printf("%.3f is equal to positive zero\n",z);
+	if( n==p )
+		printf("-0.0 == +0.0\n");
+
+	next();
+
+/*
+	#define signbit(x) \
+	( sizeof(x) == sizeof(double) ? int __inline_signbitd(double __x) {
+	union
+	{
+		double __f;
+		unsigned long long __u;
+	}	__u;
+	__u.__f = __x;
+	return (int)(__u.__u >> 63);
+*/
+
+	printf("1: %s -> %f %f\n", "%f %f", f, d);
+	n1 = printf("pf:\t|%f| ||%f||\n", f, d);
+	n2 = ft_printf("ft:\t|%f| ||%f||\n", f, d);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("2: %s -> %f %f\n", "%.10f (0.87650894255), %.10f (0.87650894245)", 0.87650894255, 0.87650894245);
+	n1 = printf("pf:\t|%.10f| ||%.10f||\n", 0.87650894255, 0.87650894245);
+	n2 = ft_printf("ft:\t|%.10f| ||%.10f||\n", 0.87650894255, 0.87650894245);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("1: %s -> %f %f %f\n", "%f %f", -100.90001, -1.901, -2.90);
+	n1 = printf("pf:\t|%f| ||%f|| |%f|\n", -100.90001, -1.901, -2.90);
+	n2 = ft_printf("ft:\t|%f| ||%f|| |%f|\n", -100.90001, -1.901, -2.90);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("1: %s -> %f %f %f\n", "%f %f", 2.0001, 0.01, 0.0);
+	n1 = printf("pf:\t|%f| ||%f|| |%f|\n", 2.0001, 0.01, 0.0);
+	n2 = ft_printf("ft:\t|%f| ||%f|| |%f|\n", 2.0001, 0.01, 0.0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\n%llu, %llu\n", (unsigned long long int)-0.0, (unsigned long long int)0.0);
+
+/*
+	double sign_bit;
+
+	f = -0.0;
+	sign_bit = (((long long)f) >> 63);
+	printf("1 :: sign_bit = %f\n", sign_bit);
+
+	f = 0.0;
+	sign_bit = (((long long)f) >> 63);
+	printf("2 :: sign_bit = %f\n", sign_bit);
+
+	f = -1.0;
+	sign_bit = (((long long)f) >> 63);
+	printf("3 :: sign_bit = %f\n", sign_bit);
+
+	f = -2.0;
+	sign_bit = (((long long)f) >> 63);
+	printf("4 :: sign_bit = %f\n", sign_bit);
+
+	f = -1678.097;
+	sign_bit = (((long long)f) >> 63);
+	printf("5 :: sign_bit = %f\n", sign_bit);
+
+	f = 0.19080;
+	sign_bit = (((long long)f) >> 63);
+	printf("6 :: sign_bit = %f\n", sign_bit);
+	
+
+	next();
+
+	d = -0.19080;
+	void *ptr = &d;
+
+	sign_bit = (*(long long *)ptr >> 63);
+	printf("7 :: sign_bit = %f\n", sign_bit);
+
+	d = 0.19080;
+	sign_bit = (*(long long *)ptr >> 63);
+	printf("8 :: sign_bit = %f\n", sign_bit);
+
+	d = -1.1;
+	sign_bit = (*(long long *)ptr >> 63);
+	printf("9 :: sign_bit = %f\n", sign_bit);
+
+	d = -0.0;
+	sign_bit = (*(long long *)ptr >> 63);
+	printf("10 :: sign_bit = %f\n", sign_bit);
+
+	d = 0.0;
+	sign_bit = (*(long long *)ptr >> 63);
+	printf("11 :: sign_bit = %f\n", sign_bit);
+
+*/
+}
+
 int	main(void)
 {
 	ft_printf("\n* * * ************* STARTING TEST ************* * * *\n");
@@ -1091,14 +1889,25 @@ int	main(void)
 	//test_08("08, more d");
 	//test_09("09, u");
 	//test_10("10, %%");
-	test_11("11, p");
+	//test_11("11, p");
 	//test_12("12, x & X");
 	//test_13("13, i");
 	//test_14("14, n f g e");
 	//test_15("15, l ll h hh");
 	//test_16("16, #");
-	test_17("17, p");
+	//test_17("17, p");
+	//test_19("19 - lc");
 	//test_18("Troubleshooting");
+	//test_20("20 - f g e");
+	//test_21("21 - f");
+	//test_22("22 - f troubleshooting");
+	test_23("23 - f troubleshooting");
+
+	//getchar();
+	//char *leak = ft_strdup("Hello Leak!");
+	//printf("\n\n%s\n\n", leak);
+	//free(leak);
+
 
 	/*
 	int n = 0;

@@ -6,13 +6,13 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 20:52:34 by lbaela            #+#    #+#             */
-/*   Updated: 2021/05/26 18:40:12 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/14 23:57:51 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*get_string(t_args *arg, va_list ap)
+static char	*get_string(t_args *arg, va_list ap)
 {
 	char	*res;
 	char	*tmp;

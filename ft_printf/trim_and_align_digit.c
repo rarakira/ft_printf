@@ -43,7 +43,8 @@ static void	value_align_right(char *dest, char *src, t_args *arg)
 {
 	if (arg->sign)
 	{
-		if (arg->flag_0 && !arg->prec_flag)
+		if ((arg->flag_0 && arg->format == 'f')
+			|| (arg->flag_0 && !arg->prec_flag))
 			*dest = arg->sign;
 		else
 			dest[arg->width - arg->prec--] = arg->sign;

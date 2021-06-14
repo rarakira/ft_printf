@@ -18,21 +18,28 @@ static char	*get_arg_string(t_args *arg, va_list ap)
 		else
 			res = ft_itoa_u((unsigned long int) va_arg(ap, unsigned int));
 	}
+	if (arg->format == 'f')
+		res = ft_itoa_f(va_arg(ap, double), arg);
 	return (res);
 }
 
-char	*convert_arg_d_u_i(t_args *arg, va_list ap, int *count)
+char	*convert_arg_d_u_i_f(t_args *arg, va_list ap, int *count)
 {
 	char	*res;
 
 	res = get_arg_string(arg, ap);
+	if (arg->flag_0 && arg->a_left && arg->format == 'f')
+	{
+		arg->padding = ' ';
+		arg->flag_0 = 0;
+	}
 	if (res == NULL)
 	{
 		*count = -1;
 		return (NULL);
 	}
 	arg->len = ft_strlen(res);
-	if (arg->prec_flag && arg->prec == 0 && *res == '0')
+	if (arg->prec_flag && arg->prec == 0 && *res == '0' && arg->format != 'f')
 	{
 		*res = '\0';
 		arg->len = 0;

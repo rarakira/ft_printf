@@ -6,13 +6,13 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 12:53:01 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 16:24:34 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/14 19:10:56 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	translate_nums(char *num, long int n, unsigned int len)
+void	translate_nums(char *num, long int n, unsigned int len)
 {
 	if (n < -9223372036854775807)
 	{
