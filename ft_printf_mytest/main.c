@@ -1782,18 +1782,6 @@ void test_23(char *name)
 
 	next();
 
-/*
-	#define signbit(x) \
-	( sizeof(x) == sizeof(double) ? int __inline_signbitd(double __x) {
-	union
-	{
-		double __f;
-		unsigned long long __u;
-	}	__u;
-	__u.__f = __x;
-	return (int)(__u.__u >> 63);
-*/
-
 	printf("1: %s -> %f %f\n", "%f %f", f, d);
 	n1 = printf("pf:\t|%f| ||%f||\n", f, d);
 	n2 = ft_printf("ft:\t|%f| ||%f||\n", f, d);

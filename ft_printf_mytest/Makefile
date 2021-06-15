@@ -1,6 +1,6 @@
 NAME		= test
 
-SRCS		= main.c	${wildcard ${LIBDIR}/*.c}
+SRCS		= main.c	# ${wildcard ${LIBDIR}/*.c}
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -33,10 +33,11 @@ ${NAME}: lib ${OBJS}
 		${CC} ${CFLAGS} ${INCLUDES} ${SRC2} -L${LIBDIR} -l${LIB} -o ${NAME}
 
 norm_a:
-	norminette ${LIBDIR}/libft ${LIBDIR}/*.c ${LIBDIR}/includes
+	@norminette ${LIBDIR}/*.c ${LIBDIR}/*/*.c
 
 norm:
-	norminette ${LIBDIR}/*.c ${LIBDIR}/includes
+	@norminette ${LIBDIR}/*.c ${LIBDIR}/arg_parser/*.c	\
+	${LIBDIR}/str_converter/*.c ${LIBDIR}/includes
 
 clean:
 		${RM} ${OBJS}
