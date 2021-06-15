@@ -6,7 +6,7 @@
 #    By: lbaela <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/18 14:03:12 by lbaela            #+#    #+#              #
-#    Updated: 2021/05/13 14:34:53 by lbaela           ###   ########.fr        #
+#    Updated: 2021/06/15 17:27:21 by lbaela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,14 +47,14 @@ $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) -c $< -o $@
 
 bonus : $(NAME) $(OBJS_B)
-	ar rcs $(NAME) $?
+	ar -rcs $(NAME) $?
 
 clean :
-	rm -f $(OBJS) $(OBJS_B)
+	@rm -f $(OBJS) $(OBJS_B)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re bonus so

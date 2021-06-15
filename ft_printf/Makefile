@@ -1,6 +1,8 @@
 NAME = libftprintf.a
 
-LIBFT = libft
+LIBFT_DIR = libft
+
+LIBFT = $(LIBFT_DIR)/libft.a
 
 CFILES =	ft_printf.c								\
 			print_control_string.c					\
@@ -25,11 +27,10 @@ CC = gcc
 
 FLAGS = -Wall -Werror -Wextra -Iincludes
 
-all : $(NAME)
+all : get_libft $(NAME)
 
-$(NAME) : $(OBJS)
-	$(MAKE) -C $(LIBFT)
-	@cp ./libft/libft.a ./$(NAME)
+$(NAME) : $(OBJS) $(LIBFT)
+	@cp $(LIBFT_DIR)/libft.a ./$(NAME)
 	ar rcs $(NAME) $(OBJS)
 
 %.o : %.c
@@ -37,17 +38,20 @@ $(NAME) : $(OBJS)
 
 bonus : $(NAME)
 
+get_libft :
+	@$(MAKE) -C $(LIBFT_DIR)
+
 clean :
-	$(MAKE) clean -C $(LIBFT)
+	@$(MAKE) clean -C $(LIBFT_DIR)
 	rm -f $(OBJS)
 
 fclean : clean
-	$(MAKE) fclean -C $(LIBFT)
+	@$(MAKE) fclean -C $(LIBFT_DIR)
 	rm -f $(NAME)
 
 re : fclean all
 
 norme :
-	@norminette $(CFILES) includes/*.h libft/*.c
+	@norminette $(CFILES) includes/*.h $(LIBFT_DIR)/*.c
 
 .PHONY : all clean fclean re bonus norme
