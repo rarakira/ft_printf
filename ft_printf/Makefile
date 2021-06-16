@@ -1,10 +1,10 @@
-NAME = libftprintf.a
+NAME		= libftprintf.a
 
-LIBFT_DIR = libft
+LIBFT_DIR	= libft
 
-LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT		= $(LIBFT_DIR)/libft.a
 
-CFILES =	ft_printf.c								\
+CFILES	=	ft_printf.c								\
 			print_control_string.c					\
 			arg_parser/print_arg.c					\
 			arg_parser/get_arg.c					\
@@ -21,11 +21,11 @@ CFILES =	ft_printf.c								\
 			str_converter/convert_arg_d_u_i_f.c		\
 			str_converter/convert_arg_x_p.c
 
-OBJS = $(CFILES:.c=.o)
+OBJS		= $(CFILES:.c=.o)
 
-CC = gcc
+CC			= gcc
 
-FLAGS = -Wall -Werror -Wextra -Iincludes
+FLAGS		= -Wall -Werror -Wextra -Iincludes
 
 all : get_libft $(NAME)
 
