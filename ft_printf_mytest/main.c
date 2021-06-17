@@ -1860,7 +1860,68 @@ void test_23(char *name)
 	sign_bit = (*(long long *)ptr >> 63);
 	printf("11 :: sign_bit = %f\n", sign_bit);
 
+
+	ft_printf("%-132.186x%00129.46%%-191.181X%-75.123d%0033.123u" ,2222238685u,3146675666u,251185067,3453417465u)
 */
+}
+
+void test_24(char *name)
+{
+	int n1;
+	int n2;
+
+	print_name(name);
+
+	printf("\033[32m*1: %s -> %u %u %d %u*\033[0m\n\n", "%-132.186x%00129.46%%-191.181X%-75.123d%0033.123u", 2222238685u, 3146675666u, 251185067, 3453417465u);
+	n1 = printf("pf:\t|%-132.186x| ||%00129.46%|| |%-191.181X| ||%-75.123d|| |%0033.123u|\n", 2222238685u, 3146675666u, 251185067, 3453417465u);
+	n2 = ft_printf("ft:\t|%-132.186x| ||%00129.46%|| |%-191.181X| ||%-75.123d|| |%0033.123u|\n", 2222238685u, 3146675666u, 251185067, 3453417465u);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*1: %s -> %u %u %d %u*\033[0m\n\n", "%-132.186x%00129.46%%-191.181X%-75.123d%0033.123u", 2222238685u, 3146675666u, 251185067, 3453417465u);
+	n1 = printf("pf:\t%-132.186x%00129.46%%-191.181X%-75.123d%0033.123u\n", 2222238685u, 3146675666u, 251185067, 3453417465u);
+	n2 = ft_printf("ft:\t%-132.186x%00129.46%%-191.181X%-75.123d%0033.123u\n", 2222238685u, 3146675666u, 251185067, 3453417465u);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*1: %s*\033[0m\n\n", "%00129.46%");
+	n1 = printf("pf:\t%00129.46%\n");
+	n2 = ft_printf("ft:\t%00129.46%\n");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*1: %s*\033[0m\n\n", "%00129.46%");
+	n1 = printf("pf:\t%0129.46%\n");
+	n2 = ft_printf("ft:\t%0129.46%\n");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	char c = 'a';
+	printf("\033[32m*1: %s -> %c*\033[0m\n\n", "%0040.20c", c);
+	n1 = printf("pf:\t|%40.c|\n", c);
+	n2 = ft_printf("ft:\t|%040.20c|\n", c);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*1: %s*\033[0m\n\n", "%-05%");
+	n1 = printf("pf:\t|%-05%|\n");
+	n2 = ft_printf("ft:\t|%-05%|\n");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*12: %s* -> %p\033[0m\n\n", "%.p %-10.p %10.p %20.p", NULL);
+	n1 = printf("pf:\t|%.p| ||%-10.p|| |%10.p| ||%20.p||\n", NULL, NULL, NULL, NULL);
+	n2 = ft_printf("ft:\t|%.p| ||%-10.p|| |%10.p| ||%20.p||\n", NULL, NULL, NULL, NULL);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*12: %s* -> %p\033[0m\n\n", "%.p %-10.p %10.p %20.p", &n1);
+	n1 = printf("pf:\t|%.p| ||%-10.p|| |%10.p| ||%20.p||\n", &n1, &n1, &n1, &n1);
+	n2 = ft_printf("ft:\t|%.p| ||%-10.p|| |%10.p| ||%20.p||\n", &n1, &n1, &n1, &n1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	
 }
 
 int	main(void)
@@ -1889,7 +1950,8 @@ int	main(void)
 	//test_20("20 - f g e");
 	//test_21("21 - f");
 	//test_22("22 - f troubleshooting");
-	test_23("23 - f troubleshooting");
+	//test_23("23 - f troubleshooting");
+	test_24("24 - Post-eval troubleshooting");
 
 	//getchar();
 	//char *leak = ft_strdup("Hello Leak!");

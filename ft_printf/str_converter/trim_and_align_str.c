@@ -13,9 +13,12 @@ char	*trim_and_align_str(char *str, t_args *arg, int *count)
 			*count = -1;
 			return (NULL);
 		}
-		ft_memset(res, arg->padding, arg->width);
+		ft_memset(res, ' ', arg->width);
 		if (!arg->a_left)
+		{
+			ft_memset(res, arg->padding, arg->width);
 			ft_memcpy((res + arg->width - arg->prec), str, arg->prec);
+		}
 		else
 			ft_memcpy(res, str, arg->prec);
 		free(str);
