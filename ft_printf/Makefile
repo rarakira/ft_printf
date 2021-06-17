@@ -36,7 +36,7 @@ $(NAME) : $(OBJS) $(LIBFT)
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-bonus : $(NAME)
+bonus : get_libft $(NAME)
 
 get_libft :
 	@$(MAKE) -C $(LIBFT_DIR)
