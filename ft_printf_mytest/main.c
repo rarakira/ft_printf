@@ -1909,15 +1909,15 @@ void test_24(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
-	printf("\033[32m*12: %s* -> %p\033[0m\n\n", "%.p %-10.p %10.p %20.p", NULL);
-	n1 = printf("pf:\t|%.p| ||%-10.p|| |%10.p| ||%20.p||\n", NULL, NULL, NULL, NULL);
-	n2 = ft_printf("ft:\t|%.p| ||%-10.p|| |%10.p| ||%20.p||\n", NULL, NULL, NULL, NULL);
+	printf("\033[32m*12: %s* -> %p\033[0m\n\n", "%p %.p %-20.p %10.p %20.p", NULL);
+	n1 = printf("pf:\t||%p|| |%.p| ||%-20.p|| |%10.p| ||%20.p||\n", NULL, NULL, NULL, NULL, NULL);
+	n2 = ft_printf("ft:\t||%p|| |%.p| ||%-20.p|| |%10.p| ||%20.p||\n", NULL, NULL, NULL, NULL, NULL);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
-	printf("\033[32m*12: %s* -> %p\033[0m\n\n", "%.p %-10.p %10.p %20.p", &n1);
-	n1 = printf("pf:\t|%.p| ||%-10.p|| |%10.p| ||%20.p||\n", &n1, &n1, &n1, &n1);
-	n2 = ft_printf("ft:\t|%.p| ||%-10.p|| |%10.p| ||%20.p||\n", &n1, &n1, &n1, &n1);
+	printf("\033[32m*12: %s* -> %p\033[0m\n\n", "%.p %-20.p %10.p %20.p", &n1);
+	n1 = printf("pf:\t||%p|| |%.p| ||%-20.p|| |%10.p| ||%20.p||\n", &n1, &n1, &n1, &n1, &n1);
+	n2 = ft_printf("ft:\t||%p|| |%.p| ||%-20.p|| |%10.p| ||%20.p||\n", &n1, &n1, &n1, &n1, &n1);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
@@ -1927,14 +1927,49 @@ void test_24(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
-	
+/*
+	printf("\033[32m*5: %s -> nothing\033[0m\n\n", "%f");
+	n1 = printf("pf:\t|nothing|\n");
+	n2 = ft_printf("ft:\t|%f|\n");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 
-	printf("\033[32m*3: %s* -> L\"hello\"\033[0m\n\n", "%ls");
+	printf("\033[32m*5: %s -> -0.0\033[0m\n\n", "%f");
+	n1 = printf("pf:\t|%f|\n", -0.0);
+	n2 = ft_printf("ft:\t|%f|\n", -0.0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+*/
+
+	printf("\033[32m*5: %s -> nothing\033[0m\n\n", "%d");
+	n1 = printf("pf:\t|nothing|\n");
+	n2 = ft_printf("ft:\t|%d|\n");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+/*
+	
+*/
+
+	printf("\033[32m*4: %s* -> L\"hello\"\033[0m\n\n", "%ls");
 	n1 = printf("pf:\tultimate4 |%ls|\n", L"hello");
 	n2 = ft_printf("ft:\tultimate4 |%ls|\n", L"hello");
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
+	wchar_t	 s[] = {' ', u'ƀ', u'ɏ', u'ɐ', ' ', u'ʯ', ' ', u'ʰ', u'˿', ' ', u'ୟ', ' ', u'௫', ' ', ' ', u'࿚', 0};
+
+	printf("\033[32m*4: %s* -> %ls\033[0m\n\n", "%ls", s);
+	n1 = printf("pf:\tultimate4 |%ls|\n", s);
+	n2 = ft_printf("ft:\tultimate4 |%ls|\n", s);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*5: %s* -> ࿚\033[0m\n\n", "%lc");
+	n1 = printf("pf:\tultimate4 |%lc|\n", u'࿚');
+	n2 = ft_printf("ft:\tultimate4 |%lc|\n", u'࿚');
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 	
 }
 

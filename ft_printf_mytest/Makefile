@@ -32,6 +32,10 @@ ${NAME}: lib ${OBJS}
 2 :
 		${CC} ${CFLAGS} ${INCLUDES} ${SRC2} -L${LIBDIR} -l${LIB} -o ${NAME}
 
+leaks : lib ${OBJS}
+		${CC} ${CFLAGS} -fsanitize=address ${OBJS} -L${LIBDIR} -l${LIB} -o leaks.out
+		valgrind ./leaks
+
 norm_a:
 	@norminette ${LIBDIR}/*.c ${LIBDIR}/*/*.c
 
@@ -58,4 +62,4 @@ play: all
 leaks: all
 		@valgrind --leak-check=full --show-leak-kinds=all ./test
 
-.PHONY: all clean fclean re test play leaks norm
+.PHONY: all clean fclean re test play leaks norm debug leaks
