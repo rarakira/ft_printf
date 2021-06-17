@@ -27,13 +27,12 @@ char	*convert_arg_x_p(t_args *arg, va_list ap, int *count)
 		return (NULL);
 	}
 	arg->len = ft_strlen(res);
-	//printf("\nP_FLAG : %d, PREC = %zu, RES : %s, FORMAT : \'%c\'\n", arg->prec_flag, arg->prec, res, arg->format);
-	if ((arg->prec_flag && arg->prec == 0 && ft_strlen(res) == 1 && arg->format != 'p') || (arg->format == 'p' && arg->prec_flag))
+	if ((arg->prec_flag && *res == '0')
+		&& (arg->prec == 0 || arg->format == 'p'))
 	{
 		*res = '\0';
 		arg->len = 0;
 	}
-	//printf("\nP_FLAG : %d, PREC = %zu, RES : %s, FORMAT : \'%c\'\n", arg->prec_flag, arg->prec, res, arg->format);
 	if (arg->prec < arg->len)
 		arg->prec = arg->len;
 	if (arg->sign)

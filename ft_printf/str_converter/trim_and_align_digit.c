@@ -77,7 +77,7 @@ char	*trim_and_align_digit(char *str, t_args *arg, int *count)
 
 	res = NULL;
 	if (((arg->flag_alt && *str != '0') && *str != '\0')
-		|| (*str == '0' && arg->format == 'p'))
+		|| (arg->format == 'p' && (*str == '0' || arg->prec_flag)))
 		arg->prec += 2;
 	else if (arg->flag_alt && *str == '0')
 		arg->flag_alt = 0;

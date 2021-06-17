@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/06 18:00:45 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/14 23:59:09 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/17 14:29:11 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,17 @@ void	get_arg(t_args *arg, va_list ap, char *fspec)
 		arg->prec_flag = 1;
 		fspec++;
 		arg->prec = get_size_arg(&fspec, ap, &(arg->prec_neg));
+		if (arg->format == 'p')
+			arg->prec = 0;
 	}
-	if (arg->prec_neg || arg->format == 'p')
+	if (arg->prec_neg)
 	{
 		arg->prec_flag = 0;
 		arg->prec = 0;
-		if (arg->format == 'p')
-			arg->flag_alt = 1;
 	}
+	if (arg->format == 'p')
+		arg->flag_alt = 1;
 	if (((arg->prec_flag && arg->width > arg->prec) || arg->a_left)
-		&& arg->format != 'f')
+		&& arg->format != 'f' && arg->format != '%')
 		arg->padding = ' ';
 }
