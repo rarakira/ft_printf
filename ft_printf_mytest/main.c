@@ -1921,6 +1921,20 @@ void test_24(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
+	printf("\033[32m*12: %s* -> %x %x\033[0m\n\n", "%*.*x %*.*X", 5000, 10);
+	n1 = printf("pf:\tultimate4 |%*.*x| |%*.*X|\n", 1, 50, 5000, 1, 0, 10);
+	n2 = ft_printf("ft:\tultimate4 |%*.*x| |%*.*X|\n", 1, 50, 5000, 1, 0, 10);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	
+
+	printf("\033[32m*3: %s* -> L\"hello\"\033[0m\n\n", "%ls");
+	n1 = printf("pf:\tultimate4 |%ls|\n", L"hello");
+	n2 = ft_printf("ft:\tultimate4 |%ls|\n", L"hello");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
 	
 }
 
