@@ -17,7 +17,7 @@ wchar_t	*trim_and_align_long_c(wchar_t *str, t_args *arg, int *count)
 			*count = -1;
 			return (NULL);
 		}
-		ft_memset(res, ' ', arg->width * sizeof(wchar_t));
+		ft_memset(res, L' ', arg->width * sizeof(wchar_t));
 		if (!arg->a_left)
 		{
 			ft_memset(res, arg->padding, arg->width * sizeof(wchar_t));
@@ -62,7 +62,6 @@ static void	wchar_putstr_fd(wchar_t *s, int fd, int *count)
 	size_t	i;
 
 	i = 0;
-	setlocale(LC_ALL, "");
 	//printf("\n\n*S = %ls\n\n", s);
 	if (!s)
 		return ;
@@ -71,8 +70,9 @@ static void	wchar_putstr_fd(wchar_t *s, int fd, int *count)
 		len++;
 	//printf("\nLEN = %zu\n\n", len);
 	*count += len;
+	//printf("\nSIZEOF :: %zu \n", sizeof(*(s + i)));
 	while (s[i])
-		write(fd, (s + i++), sizeof(wchar_t));
+		write(fd, (s + i++), sizeof(*(s + i)));
 }
 
 char	*convert_arg_long_c(t_args *arg, va_list ap, int *count)
@@ -86,7 +86,7 @@ char	*convert_arg_long_c(t_args *arg, va_list ap, int *count)
 		*count = -1;
 		return (NULL);
 	}
-	*tmp = va_arg(ap, wint_t);
+	*tmp = va_arg(ap, wchar_t);
 	//printf("\n\nTMP = %lc\n", *tmp);
 	if (*tmp == '\0')
 	{

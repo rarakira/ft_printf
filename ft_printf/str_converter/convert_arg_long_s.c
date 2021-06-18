@@ -24,18 +24,39 @@ static void	wchar_putstr_fd(wchar_t *s, int fd, int *count)
 {
 	size_t	len;
 	size_t	i;
+	ssize_t w;
+	char	*str;
+	size_t	n;
+	//wchar_t	ch;
 
 	i = 0;
-	setlocale(LC_ALL, "");
+	str = (char *)malloc(5);
+	//setlocale(LC_ALL, "en_US.UTF-8");
+	//printf("\n\nS :: %ls\n\n", s);
 	if (!s)
 		return ;
 	len = 0;
 	while (s[len] != L'\0')
 		len++;
 	*count += len;
-	//printf("\nLEN = %zu\n\n", len);
+	//while (len-- && s[i])
+	//{
+	//	//printf("\nS[i] :: %lc\n", *(s + i));
+	//	ch = *(s + i++);
+	//	w = write(fd, &ch, sizeof(ch));
+	//	printf("\nS[i] :: w = %zu, ch = %lc, sizeof(ch) = %zu\n", w, ch, sizeof(ch));
+	//}
+	//write(1, "Ƹ", 3);
 	while (len-- && s[i])
-		write(fd, (s + i++), sizeof(wchar_t));
+	{
+		//n = wctomb(str, *(s + i++));
+		str[n] = '\0';
+		w = write(fd, str, sizeof(ft_strlen(str)));
+		//printf("\nAFTER :: n = %zu, w = %zu\n", n, w);
+	}
+	free(str);
+	//w = write(fd, (char *)s, sizeof(*s) * len);
+	//printf("\nAFTER :: w = %zu\n", w);
 }
 
 char	*get_w_string(t_args *arg, va_list ap, int *count)
