@@ -1973,6 +1973,28 @@ void test_24(char *name)
 	
 }
 
+void test_25(char *name)
+{
+	int n1;
+	int n2;
+
+	int k, l, m, n;
+
+	print_name(name);
+
+	printf("\033[32m*1: %s -> %p %p*\033[0m\n\n", "%s %n %n", &k, &l);
+	n1 = printf("pf:\t| %s |%n\n%n", "hello!", &k, &l);
+	n2 = ft_printf("ft:\t| %s |%n\n%n", "hello!", &m, &n);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+
+	n1 = printf("pf:\t| k = %d l = %d |\n", k, l);
+	n2 = ft_printf("ft:\t| m = %d n = %d |\n", m, n);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+	
+
+}
+
 int	main(void)
 {
 	ft_printf("\n* * * ************* STARTING TEST ************* * * *\n");
@@ -2000,7 +2022,8 @@ int	main(void)
 	//test_21("21 - f");
 	//test_22("22 - f troubleshooting");
 	//test_23("23 - f troubleshooting");
-	test_24("24 - Post-eval troubleshooting");
+	//test_24("24 - Post-eval troubleshooting");
+	test_25("25 - BONUS: n");
 
 	//getchar();
 	//char *leak = ft_strdup("Hello Leak!");
