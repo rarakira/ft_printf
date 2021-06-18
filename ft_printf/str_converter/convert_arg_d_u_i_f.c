@@ -1,23 +1,47 @@
 #include "ft_printf.h"
 
+static char	*get_arg_string_d_i(t_args *arg, va_list ap)
+{
+	char	*res;
+
+	if (arg->mod_l == 1)
+		res = ft_itoa_d((long long)va_arg(ap, long), &arg->sign);
+	else if (arg->mod_l == 2)
+		res = ft_itoa_d(va_arg(ap, long long), &arg->sign);
+	else if (arg->mod_h == 1)
+		res = ft_itoa_d((short)va_arg(ap, int), &arg->sign);
+	else if (arg->mod_h == 2)
+		res = ft_itoa_d((signed char)va_arg(ap, int), &arg->sign);
+	else
+		res = ft_itoa_d((long long)va_arg(ap, int), &arg->sign);
+	return (res);
+}
+
+static char	*get_arg_string_u(t_args *arg, va_list ap)
+{
+	char	*res;
+
+	if (arg->mod_l == 1)
+		res = ft_itoa_u((unsigned long long)va_arg(ap, unsigned long));
+	else if (arg->mod_l == 2)
+		res = ft_itoa_u(va_arg(ap, unsigned long long));
+	else if (arg->mod_h == 1)
+		res = ft_itoa_u((unsigned short)va_arg(ap, int));
+	else if (arg->mod_h == 2)
+		res = ft_itoa_u((unsigned char)va_arg(ap, int));
+	else
+		res = ft_itoa_u((unsigned long long) va_arg(ap, unsigned int));
+	return (res);
+}
+
 static char	*get_arg_string(t_args *arg, va_list ap)
 {
 	char	*res;
 
 	if (arg->format == 'd' || arg->format == 'i')
-	{
-		if (arg->mod_l != 0)
-			res = ft_itoa_d(va_arg(ap, long int), &arg->sign);
-		else
-			res = ft_itoa_d((long int)va_arg(ap, int), &arg->sign);
-	}
+		res = get_arg_string_d_i(arg, ap);
 	if (arg->format == 'u')
-	{
-		if (arg->mod_l != 0)
-			res = ft_itoa_u(va_arg(ap, unsigned long int));
-		else
-			res = ft_itoa_u((unsigned long int) va_arg(ap, unsigned int));
-	}
+		res = get_arg_string_u(arg, ap);
 	if (arg->format == 'f')
 		res = ft_itoa_f(va_arg(ap, double), arg);
 	return (res);
