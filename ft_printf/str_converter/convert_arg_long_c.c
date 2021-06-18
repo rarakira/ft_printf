@@ -62,6 +62,7 @@ static void	wchar_putstr_fd(wchar_t *s, int fd, int *count)
 	size_t	i;
 
 	i = 0;
+	setlocale(LC_ALL, "");
 	//printf("\n\n*S = %ls\n\n", s);
 	if (!s)
 		return ;
@@ -85,7 +86,7 @@ char	*convert_arg_long_c(t_args *arg, va_list ap, int *count)
 		*count = -1;
 		return (NULL);
 	}
-	*tmp = va_arg(ap, wchar_t);
+	*tmp = va_arg(ap, wint_t);
 	//printf("\n\nTMP = %lc\n", *tmp);
 	if (*tmp == '\0')
 	{

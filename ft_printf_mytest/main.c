@@ -2,6 +2,8 @@
 #include "libft.h"
 #include <stdio.h>
 #include <limits.h>
+#include <wchar.h>
+#include <locale.h>
 
 void print_name(char *name)
 {
@@ -1941,6 +1943,7 @@ void test_24(char *name)
 	next();
 */
 
+
 	printf("\033[32m*5: %s -> nothing\033[0m\n\n", "%d");
 	n1 = printf("pf:\t|nothing|\n");
 	n2 = ft_printf("ft:\t|%d|\n");
@@ -1951,25 +1954,7 @@ void test_24(char *name)
 	
 */
 
-	printf("\033[32m*4: %s* -> L\"hello\"\033[0m\n\n", "%ls");
-	n1 = printf("pf:\tultimate4 |%ls|\n", L"hello");
-	n2 = ft_printf("ft:\tultimate4 |%ls|\n", L"hello");
-	printf("\nRES LEN: %d, %d\n", n1, n2);
-	next();
-
-	wchar_t	 s[] = {' ', u'ƀ', u'ɏ', u'ɐ', ' ', u'ʯ', ' ', u'ʰ', u'˿', ' ', u'ୟ', ' ', u'௫', ' ', ' ', u'࿚', 0};
-
-	printf("\033[32m*4: %s* -> %ls\033[0m\n\n", "%ls", s);
-	n1 = printf("pf:\tultimate4 |%ls|\n", s);
-	n2 = ft_printf("ft:\tultimate4 |%ls|\n", s);
-	printf("\nRES LEN: %d, %d\n", n1, n2);
-	next();
-
-	printf("\033[32m*5: %s* -> ࿚\033[0m\n\n", "%lc");
-	n1 = printf("pf:\tultimate4 |%lc|\n", u'࿚');
-	n2 = ft_printf("ft:\tultimate4 |%lc|\n", u'࿚');
-	printf("\nRES LEN: %d, %d\n", n1, n2);
-	next();
+	
 	
 }
 
@@ -2000,12 +1985,13 @@ void test_26(char *name)
 	int n1;
 	int n2;
 
+	print_name(name);
+
+/*
 	signed char		k = 10;
 	short			l = 100;
 	long			m = 10000000000;
 	long long		n = 10000000000000000;
-
-	print_name(name);
 
 	printf("\033[32m*1: %s -> %hhd %hd %ld %lld*\033[0m\n\n", "%hhd %hd %ld %lld", k, l, m, n);
 	n1 = printf("pf:\t| %hhd %hd %ld %lld |\n", k, l, m, n);
@@ -2018,7 +2004,78 @@ void test_26(char *name)
 	n2 = ft_printf("ft:\t| %hhd |\n", kk + 1);
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
+*/
+	setlocale(LC_ALL, "");
+	
+	printf("\033[32m*1: %s* -> L\"hello\"\033[0m\n\n", "%ls");
+	n1 = printf("pf:\tultimate4 |%ls|\n", L"hello");
+	n2 = ft_printf("ft:\tultimate4 |%ls|\n", L"hello");
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 
+	wchar_t	 d_s[] = {' ', u'ƀ', u'ɏ', u'ɐ', ' ', u'ʯ', ' ', u'ʰ', u'˿', ' ', u'ୟ', ' ', u'௫', ' ', ' ', u'࿚', 0};
+
+	printf("\033[32m*2: %s* -> %ls\033[0m\n\n", "%ls", d_s);
+	n1 = printf("pf:\tultimate4 |%ls|\n", d_s);
+	n2 = ft_printf("ft:\tultimate4 |%ls|\n", d_s);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+
+	printf("\033[32m*3: %s* -> ࿚\033[0m\n\n", "%lc");
+	n1 = printf("pf:\tultimate4 |%lc|\n", u'࿚');
+	n2 = ft_printf("ft:\tultimate4 |%lc|\n", u'࿚');
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	wchar_t	s[4];
+	
+	s[0] = 0x53;
+	s[1] = 0x3abc;
+	s[2] = 0x81000;
+	s[3] = '\0';
+
+	printf("\033[32m*4: %s* -> %ls\033[0m\n\n", "%ls", s);
+	n1 = printf("pf:\tultimate4 |%ls|\n", s);
+	n2 = ft_printf("ft:\tultimate4 |%ls|\n", s);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	s[0] = 254;
+	s[1] = 256;
+	s[2] = 'b';
+	s[3] = '\0';
+
+	printf("\033[32m*5: %s* -> %ls\033[0m\n\n", "%ls", s);
+	n1 = printf("pf:\tultimate4 |%ls|\n", s);
+	n2 = ft_printf("ft:\tultimate4 |%ls|\n", s);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*6: %s* -> %lc\033[0m\n\n", "%lc", 0x6f);
+	n1 = printf("pf:\tultimate4 |%lc|\n", 0x6f);
+	n2 = ft_printf("ft:\tultimate4 |%lc|\n", 0x6f);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*7: %s* -> %lc\033[0m\n\n", "%lc", 0x4e6);
+	n1 = printf("pf:\tultimate4 |%lc|\n", 0x4e6);
+	n2 = ft_printf("ft:\tultimate4 |%lc|\n", 0x4e6);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+/*
+	printf("\033[32m*8: %s* -> %lc\033[0m\n\n", "%lc", 0x11ffff);
+	n1 = printf("pf:\tultimate4 |%lc|\n", 0x11ffff);
+	n2 = ft_printf("ft:\tultimate4 |%lc|\n", 0x11ffff);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+	printf("\033[32m*9: %s* -> %lc\033[0m\n\n", "%lc", 0);
+	n1 = printf("pf:\tultimate4 |%lc|\n", 0);
+	n2 = ft_printf("ft:\tultimate4 |%lc|\n", 0);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+*/
 }
 
 int	main(void)
@@ -2049,9 +2106,10 @@ int	main(void)
 	//test_22("22 - f troubleshooting");
 	//test_23("23 - f troubleshooting");
 	//test_24("24 - Post-eval troubleshooting");
-	//test_25("25 - BONUS: n");
+	//test_25("25 - BONUS: n && L\'str\'");
 	test_26("26 - Shorts and longs");
 
+	//printf("\nwchar_t = %zu, wint_t = %zu\n", sizeof(wchar_t), sizeof(wint_t));
 	//getchar();
 	//char *leak = ft_strdup("Hello Leak!");
 	//printf("\n\n%s\n\n", leak);

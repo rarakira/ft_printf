@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/18 13:41:07 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/18 14:28:03 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <stdio.h>
+# include <wchar.h>
+# include <locale.h>
 # include "libft.h"
 
 typedef struct s_args
@@ -53,6 +55,9 @@ char	*convert_arg_x_p(t_args *arg, va_list ap, int *count);
 char	*convert_arg_i(char *fspec, va_list ap);
 char	*convert_arg_p(char *fspec, va_list ap);
 char	*convert_arg_n(t_args *arg, va_list ap, int *count);
+
+char	*get_w_string(t_args *arg, va_list ap, int *count);
+char	*convert_arg_long_c(t_args *arg, va_list ap, int *count);
 
 char	*ft_itoa_d(long long n, char *sign);
 char	*ft_itoa_f(double n, t_args *arg);

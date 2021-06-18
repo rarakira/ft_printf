@@ -28,6 +28,8 @@ char	*convert_arg_c_prc(t_args *arg, va_list ap, int *count)
 {
 	char	*res;
 
+	if (arg->format == 'c' && arg->mod_l)
+		return (convert_arg_long_c(arg, ap, count));
 	res = ft_calloc(2, sizeof(char));
 	if (!res)
 	{

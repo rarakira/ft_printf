@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 20:52:34 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/14 23:57:51 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/18 13:45:50 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	*convert_arg_s(t_args *arg, va_list ap, int *count)
 	char	*res;
 
 	arg->padding = ' ';
+	if (arg->mod_l)
+		return (get_w_string(arg, ap, count));
 	res = get_string(arg, ap);
 	if (!res)
 	{

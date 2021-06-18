@@ -20,7 +20,9 @@ CFILES	=	ft_printf.c								\
 			str_converter/convert_arg_c_prc.c		\
 			str_converter/convert_arg_d_u_i_f.c		\
 			str_converter/convert_arg_n.c			\
-			str_converter/convert_arg_x_p.c
+			str_converter/convert_arg_x_p.c			\
+			str_converter/convert_arg_long_s.c		\
+			str_converter/convert_arg_long_c.c
 
 OBJS		= $(CFILES:.c=.o)
 
