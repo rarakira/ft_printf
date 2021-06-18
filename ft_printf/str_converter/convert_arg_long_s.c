@@ -49,7 +49,7 @@ static void	wchar_putstr_fd(wchar_t *s, int fd, int *count)
 	//write(1, "Ƹ", 3);
 	while (len-- && s[i])
 	{
-		//n = wctomb(str, *(s + i++));
+		n = wctomb(str, *(s + i++));
 		str[n] = '\0';
 		w = write(fd, str, sizeof(ft_strlen(str)));
 		//printf("\nAFTER :: n = %zu, w = %zu\n", n, w);

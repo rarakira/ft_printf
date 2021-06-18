@@ -1,5 +1,7 @@
 #include "ft_printf.h"
 
+/*
+
 wchar_t	*trim_and_align_long_c(wchar_t *str, t_args *arg, int *count)
 {
 	wchar_t		*res;
@@ -77,34 +79,23 @@ static void	wchar_putstr_fd(wchar_t *s, int fd, int *count)
 
 char	*convert_arg_long_c(t_args *arg, va_list ap, int *count)
 {
-	wchar_t		*tmp;
+	wchar_t		w_ch;
+	void		*ptr;
 	wchar_t		*res;
+	size_t		n;
 
-	tmp = ft_calloc(2, sizeof(wchar_t));
-	if (!tmp)
-	{
-		*count = -1;
-		return (NULL);
-	}
-	*tmp = va_arg(ap, wchar_t);
+	w_ch = va_arg(ap, wchar_t);
+	ptr = &w_ch;
 	//printf("\n\nTMP = %lc\n", *tmp);
-	if (*tmp == '\0')
+	if (w_ch == '\0')
 	{
 		print_eol(arg, count);
-		free(tmp);
 		return (NULL);
 	}
 	arg->prec = 1;
-	res = trim_and_align_long_c(tmp, arg, count);
-	//printf("\n\nRES = %lc\n", *res);
-	if (!res)
-	{
-		*count = -1;
-		return (NULL);
-	}
-	wchar_putstr_fd(res, 1, count);
-	//printf("\n\nPOINTERS :: tmp %p & res %p\n\n", tmp, res);
-	//free(tmp);
-	free(res);
-	return (NULL);
+	res = (char *)malloc(sizeof(w_ch) + 1);
+	n = wctomb(res, w_ch);
+	res[n] = '\0';
+	return(trim_and_align_c(res, arg, count));
 }
+*/

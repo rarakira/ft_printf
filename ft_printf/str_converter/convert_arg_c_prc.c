@@ -24,6 +24,25 @@ static void	print_eol(t_args *arg, int *count)
 	*count += 1;
 }
 
+char	*convert_arg_long_c(t_args *arg, va_list ap, int *count)
+{
+	wchar_t		w_ch;
+	char		*res;
+	size_t		n;
+
+	w_ch = va_arg(ap, wchar_t);
+	if (w_ch == '\0')
+	{
+		print_eol(arg, count);
+		return (NULL);
+	}
+	arg->prec = 1;
+	res = (char *)malloc(sizeof(w_ch) + 1);
+	n = wctomb(res, w_ch);
+	res[n] = '\0';
+	return(trim_and_align_str(res, arg, count));
+}
+
 char	*convert_arg_c_prc(t_args *arg, va_list ap, int *count)
 {
 	char	*res;
