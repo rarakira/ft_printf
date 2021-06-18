@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 13:43:41 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/18 11:55:32 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/18 13:29:24 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ char	*convert_arg_i(char *fspec, va_list ap);
 char	*convert_arg_p(char *fspec, va_list ap);
 char	*convert_arg_n(t_args *arg, va_list ap, int *count);
 
-char	*ft_itoa_d(long int n, char *sign);
+char	*ft_itoa_d(long long n, char *sign);
 char	*ft_itoa_f(double n, t_args *arg);
-char	*ft_itoa_x(long int n, t_args *arg);
-char	*ft_itoa_u(unsigned long int n);
-char	*ft_itoa_p(unsigned long int n, t_args *arg);
-void	translate_nums(char *num, long int n, unsigned int len);
+char	*ft_itoa_x(long long n, t_args *arg);
+char	*ft_itoa_u(unsigned long long n);
+char	*ft_itoa_p(unsigned long long n, t_args *arg);
+void	translate_nums(char *num, long long n, unsigned int len);
 char	*build_float(double n, unsigned long int sn, t_args *arg,
 			unsigned int len);
 

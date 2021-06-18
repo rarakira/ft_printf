@@ -6,13 +6,13 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 12:38:57 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 17:16:16 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/18 12:28:03 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	translate_u_nums(char *num, unsigned long int n, unsigned int len)
+static void	translate_u_nums(char *num, unsigned long long n, unsigned int len)
 {
 	if (n == 0)
 		num[--len] = '0';
@@ -23,11 +23,11 @@ static void	translate_u_nums(char *num, unsigned long int n, unsigned int len)
 	}
 }
 
-char	*ft_itoa_u(unsigned long int n)
+char	*ft_itoa_u(unsigned long long n)
 {
 	char				*num;
 	unsigned int		len;
-	unsigned long int	mod;
+	unsigned long long	mod;
 
 	mod = 10;
 	len = 1;

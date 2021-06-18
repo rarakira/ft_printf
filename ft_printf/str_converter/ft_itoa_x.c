@@ -6,7 +6,7 @@
 /*   By: lbaela <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 12:53:01 by lbaela            #+#    #+#             */
-/*   Updated: 2021/06/08 17:36:29 by lbaela           ###   ########.fr       */
+/*   Updated: 2021/06/18 13:29:02 by lbaela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static char	convert_to_hex(int n, char format)
 	}
 }
 
-static void	translate_hex(char *num, unsigned long long int n, unsigned int len,
+static void	translate_hex(char *num, unsigned long long n, unsigned int len,
 char format)
 {
-	unsigned long long int		rem;
-	unsigned long long int		res;
+	unsigned long long		rem;
+	unsigned long long		res;
 
 	rem = n;
 	res = n;
@@ -51,10 +51,10 @@ char format)
 	}
 }
 
-static unsigned long int	get_neg_res(long int n, unsigned int *len,
+static unsigned long	get_neg_res(long int n, unsigned int *len,
 t_args *arg)
 {
-	unsigned long int	max_v;
+	unsigned long	max_v;
 
 	max_v = 18446744073709551615U;
 	arg->sign = '-';
@@ -70,11 +70,11 @@ t_args *arg)
 	}
 }
 
-char	*ft_itoa_x(long int n, t_args *arg)
+char	*ft_itoa_x(long long n, t_args *arg)
 {
 	char					*num;
 	unsigned int			len;
-	unsigned long int		res;
+	unsigned long long		res;
 
 	if (n < -9223372036854775807)
 	{
@@ -97,11 +97,11 @@ char	*ft_itoa_x(long int n, t_args *arg)
 	return (num);
 }
 
-char	*ft_itoa_p(unsigned long int n, t_args *arg)
+char	*ft_itoa_p(unsigned long long n, t_args *arg)
 {
 	char				*num;
 	unsigned int		len;
-	unsigned long int	res;
+	unsigned long long	res;
 
 	res = n;
 	len = 1;

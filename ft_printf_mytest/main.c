@@ -1995,6 +1995,32 @@ void test_25(char *name)
 
 }
 
+void test_26(char *name)
+{
+	int n1;
+	int n2;
+
+	signed char		k = 10;
+	short			l = 100;
+	long			m = 10000000000;
+	long long		n = 10000000000000000;
+
+	print_name(name);
+
+	printf("\033[32m*1: %s -> %hhd %hd %ld %lld*\033[0m\n\n", "%hhd %hd %ld %lld", k, l, m, n);
+	n1 = printf("pf:\t| %hhd %hd %ld %lld |\n", k, l, m, n);
+	n2 = ft_printf("ft:\t| %hhd %hd %ld %lld |\n", k, l, m, n);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+
+	signed char		kk = CHAR_MAX;
+	printf("\033[32m*1: %s -> %hhd + 1*\033[0m\n\n", "%hhd", kk);
+	//n1 = printf("pf:\t| %hhd |\n", kk);
+	n2 = ft_printf("ft:\t| %hhd |\n", kk + 1);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
+
+}
+
 int	main(void)
 {
 	ft_printf("\n* * * ************* STARTING TEST ************* * * *\n");
@@ -2023,7 +2049,8 @@ int	main(void)
 	//test_22("22 - f troubleshooting");
 	//test_23("23 - f troubleshooting");
 	//test_24("24 - Post-eval troubleshooting");
-	test_25("25 - BONUS: n");
+	//test_25("25 - BONUS: n");
+	test_26("26 - Shorts and longs");
 
 	//getchar();
 	//char *leak = ft_strdup("Hello Leak!");

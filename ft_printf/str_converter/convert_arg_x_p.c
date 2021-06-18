@@ -6,8 +6,14 @@ static char	*get_arg_string(t_args *arg, va_list ap)
 
 	if (arg->format == 'x' || arg->format == 'X')
 	{
-		if (arg->mod_l != 0)
-			res = ft_itoa_x(va_arg(ap, long int), arg);
+		if (arg->mod_l == 1)
+			res = ft_itoa_x(va_arg(ap, long), arg);
+		else if (arg->mod_l == 2)
+			res = ft_itoa_x(va_arg(ap, long long), arg);
+		else if (arg->mod_h == 1)
+			res = ft_itoa_x((unsigned short)va_arg(ap, int), arg);
+		else if (arg->mod_h == 2)
+			res = ft_itoa_x((unsigned char)va_arg(ap, int), arg);
 		else
 			res = ft_itoa_x((long int) va_arg(ap, int), arg);
 	}
