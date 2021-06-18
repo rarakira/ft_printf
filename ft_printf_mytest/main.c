@@ -2064,6 +2064,13 @@ void test_26(char *name)
 	printf("\nRES LEN: %d, %d\n", n1, n2);
 	next();
 
+	wchar_t	 empty[] = {0};
+
+	printf("\033[32m*5: %s* -> %ls\033[0m\n\n", "%ls", empty);
+	n1 = printf("pf:\tultimate4 |%ls|\n", empty);
+	n2 = ft_printf("ft:\tultimate4 |%ls|\n", empty);
+	printf("\nRES LEN: %d, %d\n", n1, n2);
+	next();
 	
 /*
 
@@ -2074,7 +2081,7 @@ void test_26(char *name)
 		w = write(1, (s + i++), sizeof(wchar_t));
 		printf("\nS[i] :: w = %zu, ch = %lc, sizeof(ch) = %zu\n", w, *(s + i), sizeof(*s));
 	}
-	
+
 	printf("\033[32m*8: %s* -> %lc\033[0m\n\n", "%lc", 0x11ffff);
 	n1 = printf("pf:\tultimate4 |%lc|\n", 0x11ffff);
 	n2 = ft_printf("ft:\tultimate4 |%lc|\n", 0x11ffff);
